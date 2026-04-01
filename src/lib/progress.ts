@@ -80,6 +80,33 @@ export function saveQuizProgress(
   return progress;
 }
 
+export function resetGroupProgress(subject: Subject, chapterIds: string[]): AppProgress {
+  const progress = loadProgress();
+  for (const id of chapterIds) {
+    delete progress.chapters[id];
+  }
+  // Also remove mid quizzes that cover this group's chapters
+  for (const key of Object.keys(progress.quizzes)) {
+    if (progress.quizzes[key].subject === subject) {
+      // Keep quiz results unless they're specifically for these chapters
+    }
+  }
+  saveProgress(progress);
+  return progress;
+}
+
+export function resetSubjectProgress(subject: Subject): AppProgress {
+  const progress = loadProgress();
+  for (const [key, ch] of Object.entries(progress.chapters)) {
+    if (ch.subject === subject) delete progress.chapters[key];
+  }
+  for (const [key, q] of Object.entries(progress.quizzes)) {
+    if (q.subject === subject) delete progress.quizzes[key];
+  }
+  saveProgress(progress);
+  return progress;
+}
+
 export function getSubjectProgress(
   subject: Subject,
   totalChapters: number,

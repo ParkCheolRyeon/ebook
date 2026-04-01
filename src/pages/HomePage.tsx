@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { isValidSubject, type Subject } from "@/types/chapter";
@@ -9,11 +10,13 @@ import MidQuizBanner from "@/components/roadmap/MidQuizBanner";
 
 export default function HomePage() {
   const { subject: subjectParam } = useParams<{ subject: string }>();
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+
   if (!subjectParam || !isValidSubject(subjectParam)) {
     return <Navigate to="/home" replace />;
   }
   const subject: Subject = subjectParam;
-  const { progress, getSubjectStats } = useProgress();
+  const { progress, getSubjectStats, resetGroup, resetSubject } = useProgress();
   const groups = roadmaps[subject];
   const midQuizList = midQuizzes[subject];
   const totalChapters = getTotalChapters(subject);
@@ -23,6 +26,15 @@ export default function HomePage() {
 
   function getChaptersInGroups(coverGroups: string[]): string[] {
     return groups.filter((g) => coverGroups.includes(g.group)).flatMap((g) => g.chapters);
+  }
+
+  function handleResetGroup(chapterIds: string[]) {
+    resetGroup(subject, chapterIds);
+  }
+
+  function handleResetSubject() {
+    resetSubject(subject);
+    setShowResetConfirm(false);
   }
 
   let renderIndex = 0;
@@ -42,9 +54,70 @@ export default function HomePage() {
               <p className="mt-0.5 text-xs text-zinc-500">{stats.completed} / {stats.total} 챕터 완료</p>
             </div>
           </div>
-          <ProgressRing percent={stats.percent} />
+          <div className="flex items-center gap-3">
+            {stats.completed > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowResetConfirm(true)}
+                className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-100 hover:text-zinc-500"
+                title="전체 학습 초기화"
+              >
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+              </button>
+            )}
+            <ProgressRing percent={stats.percent} />
+          </div>
         </div>
       </div>
+
+      {/* Reset confirmation modal */}
+      <AnimatePresence>
+        {showResetConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-4"
+            onClick={() => setShowResetConfirm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="w-full max-w-xs rounded-2xl bg-white p-6 shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mb-1 flex items-center gap-2">
+                <svg className="size-5 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <h3 className="text-sm font-bold text-zinc-900">전체 초기화</h3>
+              </div>
+              <p className="mt-2 text-xs text-zinc-500 leading-5">
+                모든 학습 진행률, 체크리스트, 퀴즈 결과가 초기화됩니다. 이 작업은 되돌릴 수 없습니다.
+              </p>
+              <div className="mt-5 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowResetConfirm(false)}
+                  className="flex-1 rounded-xl border border-zinc-200 py-2.5 text-xs font-medium text-zinc-600 transition hover:bg-zinc-50"
+                >
+                  취소
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResetSubject}
+                  className="flex-1 rounded-xl bg-red-500 py-2.5 text-xs font-semibold text-white transition hover:bg-red-600"
+                >
+                  초기화
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="px-4 pb-8">
         <div className="flex flex-col gap-3">
@@ -56,7 +129,7 @@ export default function HomePage() {
 
               return (
                 <div key={group.group}>
-                  <RoadmapCard group={group.group} chapters={group.chapters} subject={subject} progress={progress} index={cardIndex} />
+                  <RoadmapCard group={group.group} chapters={group.chapters} subject={subject} progress={progress} index={cardIndex} onResetGroup={handleResetGroup} />
                   {midQuiz && (
                     <div className="mt-3">
                       <MidQuizBanner quiz={midQuiz} subject={subject} progress={progress} allChaptersInGroups={getChaptersInGroups(midQuiz.coverGroups)} index={bannerIndex} />
@@ -73,7 +146,7 @@ export default function HomePage() {
                 <span className="text-xl">🎓</span>
                 <div>
                   <p className="text-sm font-bold text-zinc-900">최종 시험</p>
-                  <p className="text-xs text-zinc-500">JavaScript 전 범위 총망라</p>
+                  <p className="text-xs text-zinc-500">전 범위 총망라</p>
                 </div>
               </Link>
             ) : (
@@ -88,7 +161,6 @@ export default function HomePage() {
           </motion.div>
         </div>
       </div>
-
     </div>
   );
 }

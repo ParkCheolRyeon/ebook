@@ -7,6 +7,8 @@ import {
   updateChecklist,
   saveChapterQuizScore,
   saveQuizProgress,
+  resetGroupProgress,
+  resetSubjectProgress,
 } from "@/lib/progress";
 
 interface ProgressContextValue {
@@ -16,6 +18,8 @@ interface ProgressContextValue {
   saveChapterQuiz: (chapterId: string, subject: Subject, score: QuizScore) => void;
   saveQuiz: (quizId: string, subject: Subject, score: QuizScore) => void;
   getSubjectStats: (subject: Subject, totalChapters: number) => { completed: number; total: number; percent: number };
+  resetGroup: (subject: Subject, chapterIds: string[]) => void;
+  resetSubject: (subject: Subject) => void;
 }
 
 const ProgressContext = createContext<ProgressContextValue | null>(null);
@@ -39,6 +43,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     setProgress(saveQuizProgress(quizId, subject, score));
   }, []);
 
+  const resetGroup = useCallback((subject: Subject, chapterIds: string[]) => {
+    setProgress(resetGroupProgress(subject, chapterIds));
+  }, []);
+
+  const resetSubject = useCallback((subject: Subject) => {
+    setProgress(resetSubjectProgress(subject));
+  }, []);
+
   const getSubjectStats = useCallback((subject: Subject, totalChapters: number) => {
     const completed = Object.values(progress.chapters).filter(
       (ch) => ch.subject === subject && ch.isRead,
@@ -48,7 +60,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, [progress]);
 
   return (
-    <ProgressContext value={{ progress, markRead, setChecklist, saveChapterQuiz, saveQuiz, getSubjectStats }}>
+    <ProgressContext value={{ progress, markRead, setChecklist, saveChapterQuiz, saveQuiz, getSubjectStats, resetGroup, resetSubject }}>
       {children}
     </ProgressContext>
   );
