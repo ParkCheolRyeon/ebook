@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import type { Subject } from "@/types/chapter";
+import { isValidSubject, type Subject } from "@/types/chapter";
 import { useChapter } from "@/hooks/useChapter";
 import { useProgress } from "@/hooks/useProgress";
 import Spinner from "@/components/common/Spinner";
@@ -11,8 +11,12 @@ import QuizResult from "@/components/quiz/QuizResult";
 
 export default function ChapterQuizPage() {
   const { subject: subjectParam, id } = useParams<{ subject: string; id: string }>();
-  const subject = subjectParam as Subject;
   const navigate = useNavigate();
+
+  if (!subjectParam || !isValidSubject(subjectParam)) {
+    return <Navigate to="/home" replace />;
+  }
+  const subject: Subject = subjectParam;
 
   const { chapter, loading } = useChapter(subject, id!);
   const { saveChapterQuiz } = useProgress();

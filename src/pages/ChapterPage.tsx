@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { useParams, useNavigate, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import type { Subject } from "@/types/chapter";
+import { isValidSubject, type Subject } from "@/types/chapter";
 import { useChapter, getAdjacentChapters } from "@/hooks/useChapter";
 import { useProgress } from "@/hooks/useProgress";
 import Spinner from "@/components/common/Spinner";
@@ -13,8 +13,12 @@ import Checklist from "@/components/chapter/Checklist";
 
 export default function ChapterPage() {
   const { subject: subjectParam, id } = useParams<{ subject: string; id: string }>();
-  const subject = subjectParam as Subject;
   const navigate = useNavigate();
+
+  if (!subjectParam || !isValidSubject(subjectParam)) {
+    return <Navigate to="/home" replace />;
+  }
+  const subject: Subject = subjectParam;
 
   const { chapter, loading } = useChapter(subject, id!);
   const { markRead } = useProgress();
@@ -30,11 +34,45 @@ export default function ChapterPage() {
     setCurrentSection(0);
   }, [id]);
 
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // C2 fix: Mark as read when user scrolls to bottom
   useEffect(() => {
-    if (chapter) {
-      markRead(chapter.id, chapter.subject);
-    }
+    if (!chapter || !bottomRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          markRead(chapter.id, chapter.subject);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(bottomRef.current);
+    return () => observer.disconnect();
   }, [chapter, markRead]);
+
+  // I6 fix: Track current section via IntersectionObserver (works on mobile)
+  const setSectionRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
+    sectionRefs.current[index] = el;
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    sectionRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setCurrentSection(i);
+        },
+        { threshold: 0.3 },
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [chapter]);
 
   if (loading) {
     return (
@@ -98,7 +136,7 @@ export default function ChapterPage() {
           />
 
           {nonChecklistSections.map((section, i) => (
-            <div key={i} onMouseEnter={() => setCurrentSection(i)}>
+            <div key={i} ref={setSectionRef(i)}>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -132,6 +170,7 @@ export default function ChapterPage() {
           )}
 
           <ChapterNav subject={subject} prevId={prev} nextId={next} />
+          <div ref={bottomRef} />
         </article>
       </div>
     </div>

@@ -7,7 +7,6 @@ import {
   updateChecklist,
   saveChapterQuizScore,
   saveQuizProgress,
-  getSubjectProgress,
 } from "@/lib/progress";
 
 interface ProgressContextValue {
@@ -41,8 +40,12 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const getSubjectStats = useCallback((subject: Subject, totalChapters: number) => {
-    return getSubjectProgress(subject, totalChapters);
-  }, []);
+    const completed = Object.values(progress.chapters).filter(
+      (ch) => ch.subject === subject && ch.isRead,
+    ).length;
+    const percent = totalChapters > 0 ? Math.round((completed / totalChapters) * 100) : 0;
+    return { completed, total: totalChapters, percent };
+  }, [progress]);
 
   return (
     <ProgressContext value={{ progress, markRead, setChecklist, saveChapterQuiz, saveQuiz, getSubjectStats }}>

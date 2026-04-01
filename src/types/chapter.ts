@@ -1,5 +1,11 @@
 export type Subject = "js" | "react" | "next" | "cs" | "network" | "infra" | "typescript";
 
+const VALID_SUBJECTS: readonly string[] = ["js", "react", "next", "cs", "network", "infra", "typescript"];
+
+export function isValidSubject(value: string): value is Subject {
+  return VALID_SUBJECTS.includes(value);
+}
+
 export type SectionType =
   | "analogy"
   | "problem"

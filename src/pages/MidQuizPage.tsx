@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import type { Subject } from "@/types/chapter";
+import { isValidSubject, type Subject } from "@/types/chapter";
 import type { MidQuiz } from "@/types/quiz";
 import { loadMidQuiz } from "@/content/quizzes";
 import { useProgress } from "@/hooks/useProgress";
@@ -12,8 +12,12 @@ import QuizResult from "@/components/quiz/QuizResult";
 
 export default function MidQuizPage() {
   const { subject: subjectParam, id } = useParams<{ subject: string; id: string }>();
-  const subject = subjectParam as Subject;
   const navigate = useNavigate();
+
+  if (!subjectParam || !isValidSubject(subjectParam)) {
+    return <Navigate to="/home" replace />;
+  }
+  const subject: Subject = subjectParam;
 
   const [quiz, setQuiz] = useState<MidQuiz | null>(null);
   const [loading, setLoading] = useState(true);
