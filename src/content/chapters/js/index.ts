@@ -15,4 +15,10 @@ export const jsChapters: Record<string, ChapterLoader> = {
   "10-lexical-scope": () => import("./10-lexical-scope"),
   "11-execution-context": () => import("./11-execution-context"),
   "12-closure": () => import("./12-closure"),
+  "13-object-literal": () => import("./13-object-literal"),
+  "14-this-binding": () => import("./14-this-binding"),
+  "15-constructor": () => import("./15-constructor"),
+  "16-prototype": () => import("./16-prototype"),
+  "17-prototype-chain": () => import("./17-prototype-chain"),
+  "18-class": () => import("./18-class"),
 };
