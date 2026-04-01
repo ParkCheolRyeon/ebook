@@ -7,6 +7,10 @@ type FinalExamLoader = () => Promise<{ default: FinalExam }>;
 const midQuizLoaders: Record<Subject, Record<string, MidQuizLoader>> = {
   js: {
     "mid-01": () => import("./js/mid/mid-01"),
+    "mid-02": () => import("./js/mid/mid-02"),
+    "mid-03": () => import("./js/mid/mid-03"),
+    "mid-04": () => import("./js/mid/mid-04"),
+    "mid-05": () => import("./js/mid/mid-05"),
   },
   react: {},
   next: {},
