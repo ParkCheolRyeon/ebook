@@ -140,6 +140,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "자바스크립트의 빌트인 객체(Object, Array, Function, Math 등)는 언어가 기본 제공하는 도구 상자다. 네이티브 메서드를 잘 활용하면 직접 구현할 필요가 줄어든다.",
   checklist: [
     "표준 빌트인 객체와 호스트 객체의 차이를 설명할 수 있다",
     "전역 객체의 역할과 globalThis의 필요성을 설명할 수 있다",

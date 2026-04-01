@@ -185,6 +185,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useMemo는 계산 결과를, useCallback은 함수 참조를 메모이제이션한다. 성능 문제가 측정된 후에만 적용하라 — 무분별한 메모이제이션은 오히려 복잡성만 늘린다.",
   checklist: [
     "useMemo와 useCallback의 차이를 설명할 수 있다",
     "참조 동일성이 React.memo와 어떻게 연관되는지 설명할 수 있다",

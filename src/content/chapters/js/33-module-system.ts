@@ -221,6 +221,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "ES Modules(import/export)는 파일 단위로 스코프를 격리하고 의존성을 명시적으로 선언한다. 모듈은 한 번만 평가되며, 순환 참조도 처리할 수 있다.",
   checklist: [
     "스크립트와 모듈의 차이(스코프, strict mode)를 설명할 수 있다",
     "CommonJS의 require/exports 문법을 사용할 수 있다",

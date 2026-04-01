@@ -208,6 +208,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Redux Toolkit은 slice 안에 state, reducer, action을 한 곳에 정의한다. createSlice + configureStore만으로 보일러플레이트 없이 Redux를 설정할 수 있다.",
   checklist: [
     "createSlice로 Reducer와 Action Creator를 동시에 생성할 수 있다",
     "configureStore로 Store를 생성하고 React에 Provider로 연결할 수 있다",

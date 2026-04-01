@@ -197,6 +197,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "마이크로태스크(Promise.then)는 매크로태스크(setTimeout) 보다 항상 먼저 실행된다. 이벤트 루프는 매 매크로태스크 사이에 마이크로태스크 큐를 전부 비운다.",
   checklist: [
     "마이크로태스크와 매크로태스크의 차이를 설명할 수 있다",
     "Promise.then이 setTimeout보다 먼저 실행되는 이유를 설명할 수 있다",

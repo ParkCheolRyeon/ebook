@@ -169,6 +169,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React Testing Library는 '사용자처럼 테스트하라'는 철학을 따른다. getByRole, getByText 등으로 DOM을 쿼리하고, 내부 구현이 아닌 결과를 검증한다.",
   checklist: [
     "render, screen, userEvent의 역할을 설명할 수 있다",
     "쿼리 우선순위(getByRole > getByText > getByTestId)를 이해한다",

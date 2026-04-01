@@ -191,6 +191,8 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway:
+    "this는 함수가 '어떻게 호출되었는지'에 따라 동적으로 결정된다. 일반 호출은 전역, 메서드 호출은 호출 객체, new는 새 인스턴스, bind/call/apply는 명시적 지정이다.",
   checklist: [
     "호출 방식 4가지(전역·메서드·생성자·명시적)에 따른 this를 설명할 수 있다",
     "메서드를 변수에 분리해 호출할 때 this가 소실되는 이유를 설명할 수 있다",

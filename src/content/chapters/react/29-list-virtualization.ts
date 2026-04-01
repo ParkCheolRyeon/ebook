@@ -204,6 +204,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "리스트 가상화는 화면에 보이는 항목만 렌더링하여 수천 개의 리스트도 부드럽게 스크롤한다. react-window나 @tanstack/virtual이 대표적인 라이브러리다.",
   checklist: [
     "가상화가 성능을 개선하는 원리를 설명할 수 있다",
     "가시 범위 계산 로직을 이해한다",

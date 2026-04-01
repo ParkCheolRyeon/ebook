@@ -198,6 +198,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React Router는 URL과 컴포넌트를 매핑하여 SPA에서 페이지 전환을 구현한다. BrowserRouter + Routes + Route가 기본 구성이며, Link로 네비게이션한다.",
   checklist: [
     "BrowserRouter, Routes, Route로 기본 라우팅 구조를 설정할 수 있다",
     "Link와 NavLink의 차이를 설명하고 활용할 수 있다",

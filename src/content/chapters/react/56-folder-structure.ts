@@ -163,6 +163,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "폴더 구조에 정답은 없지만, feature 기반 구조가 규모 확장에 유리하다. 팀이 파일을 쉽게 찾고, 관련 코드가 가까이 있는 것이 좋은 구조의 기준이다.",
   checklist: [
     "Feature 기반 구조를 설계할 수 있다",
     "co-location 원칙을 적용할 수 있다",

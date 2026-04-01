@@ -245,6 +245,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "브라우저는 HTML→DOM, CSS→CSSOM, Layout→Paint→Composite 순서로 화면을 그린다. 리플로우를 최소화하고 합성(transform, opacity)만 변경하면 성능이 좋아진다.",
   checklist: [
     "브라우저 렌더링 파이프라인의 6단계를 순서대로 설명할 수 있다",
     "리플로우와 리페인트의 차이와 각각 발생시키는 CSS 프로퍼티를 알고 있다",

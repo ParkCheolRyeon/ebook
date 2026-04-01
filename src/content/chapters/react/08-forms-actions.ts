@@ -246,6 +246,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "제어 컴포넌트는 input의 값을 state로 관리하여 React가 단일 진실의 원천이 된다. React 19의 form actions는 폼 제출을 더 선언적으로 처리한다.",
   checklist: [
     "제어 컴포넌트와 비제어 컴포넌트의 차이를 설명할 수 있다",
     "React 19의 <form action> 패턴을 사용할 수 있다",

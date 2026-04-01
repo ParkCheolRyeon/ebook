@@ -160,6 +160,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Virtual DOM은 실제 DOM의 경량 사본이다. React는 이전과 새 Virtual DOM을 비교(재조정)하여 변경된 부분만 실제 DOM에 반영함으로써 성능을 최적화한다.",
   checklist: [
     "가상 DOM이 필요한 이유를 설명할 수 있다",
     "O(n³)에서 O(n)으로 줄이는 두 가지 휴리스틱을 설명할 수 있다",

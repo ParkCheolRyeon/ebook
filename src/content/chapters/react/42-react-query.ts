@@ -220,6 +220,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React Query는 서버 상태를 자동으로 캐싱, 동기화, 백그라운드 갱신한다. queryKey로 캐시를 식별하고, staleTime으로 신선도를 제어하는 것이 핵심이다.",
   checklist: [
     "useQuery로 데이터를 페칭하고 로딩/에러 상태를 처리할 수 있다",
     "useMutation으로 데이터를 변경하고 캐시를 갱신할 수 있다",

@@ -196,6 +196,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Suspense는 비동기 데이터가 준비될 때까지 fallback UI를 보여주는 선언적 메커니즘이다. 로딩 상태를 컴포넌트 밖으로 끌어올려 코드를 깔끔하게 만든다.",
   checklist: [
     "Suspense의 동작 원리(Promise throw)를 설명할 수 있다",
     "React 19의 use() Hook의 특징을 알고 있다",

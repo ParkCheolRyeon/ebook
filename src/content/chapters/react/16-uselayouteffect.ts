@@ -199,6 +199,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useLayoutEffect는 DOM 변경 직후, 브라우저가 화면을 그리기 전에 동기적으로 실행된다. 레이아웃 측정이나 깜빡임 방지가 필요할 때만 사용하라.",
   checklist: [
     "useLayoutEffect와 useEffect의 실행 타이밍 차이를 설명할 수 있다",
     "깜빡임(flicker)이 발생하는 원리를 이해한다",

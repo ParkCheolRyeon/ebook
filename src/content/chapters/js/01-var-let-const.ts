@@ -124,6 +124,8 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway:
+    "var는 함수 스코프, let/const는 블록 스코프 — const를 기본으로 쓰고, 재할당이 필요할 때만 let을 쓴다. var는 쓰지 않는다.",
   checklist: [
     "var, let, const의 스코프 차이를 설명할 수 있다",
     "호이스팅과 TDZ의 동작 원리를 이해한다",

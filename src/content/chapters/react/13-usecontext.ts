@@ -204,6 +204,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Context는 prop drilling 없이 컴포넌트 트리 전체에 값을 전달한다. 하지만 Context 값이 바뀌면 모든 소비자가 리렌더되므로, 자주 변하는 값에는 주의가 필요하다.",
   checklist: [
     "Context의 createContext, Provider, useContext 3단계를 구현할 수 있다",
     "Context value 변경 시 리렌더링 범위를 설명할 수 있다",

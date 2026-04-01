@@ -5,9 +5,10 @@ interface QuizResultProps {
   answers: boolean[];
   onRetry: () => void;
   onDone: () => void;
+  doneLabel?: string;
 }
 
-export default function QuizResult({ questions, answers, onRetry, onDone }: QuizResultProps) {
+export default function QuizResult({ questions, answers, onRetry, onDone, doneLabel = "완료" }: QuizResultProps) {
   const correct = answers.filter(Boolean).length;
   const total = questions.length;
   const percent = Math.round((correct / total) * 100);
@@ -65,7 +66,7 @@ export default function QuizResult({ questions, answers, onRetry, onDone }: Quiz
           onClick={onDone}
           className="flex-1 rounded-xl bg-indigo-500 py-3 text-sm font-semibold text-white transition hover:bg-indigo-600"
         >
-          완료
+          {doneLabel}
         </button>
       </div>
     </div>

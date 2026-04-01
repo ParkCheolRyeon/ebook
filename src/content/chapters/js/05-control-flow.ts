@@ -198,6 +198,8 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway:
+    "조건문은 분기를, 반복문은 순회를 담당한다. early return과 for...of를 적극 활용하면 코드의 의도가 명확해진다.",
   checklist: [
     "switch문의 fall-through 동작과 방지 방법을 설명할 수 있다",
     "for...in과 for...of의 차이와 올바른 사용 상황을 설명할 수 있다",

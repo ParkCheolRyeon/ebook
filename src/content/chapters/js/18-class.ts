@@ -210,6 +210,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "class는 프로토타입 기반 상속의 문법적 설탕이다. 내부적으로는 생성자 함수 + prototype 체인과 동일하지만, 더 명확하고 안전한 문법을 제공한다.",
   checklist: [
     "class의 constructor, 인스턴스 메서드, static의 차이를 설명할 수 있다",
     "get/set으로 접근자 프로퍼티를 정의하고 사용할 수 있다",

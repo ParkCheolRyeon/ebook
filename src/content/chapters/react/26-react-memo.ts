@@ -216,6 +216,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React.memo는 props가 변하지 않으면 리렌더를 건너뛰는 고차 컴포넌트다. 무거운 컴포넌트에만 적용하고, 프로파일러로 효과를 반드시 측정하라.",
   checklist: [
     "React.memo의 얕은 비교 동작을 설명할 수 있다",
     "인라인 객체/함수가 React.memo를 무력화하는 이유를 이해한다",

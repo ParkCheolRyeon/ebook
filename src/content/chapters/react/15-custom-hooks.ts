@@ -226,6 +226,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "커스텀 Hook은 상태 로직을 함수로 추출하여 재사용하는 패턴이다. use로 시작하는 이름을 짓고, 내부에서 다른 Hook을 자유롭게 조합할 수 있다.",
   checklist: [
     "커스텀 Hook의 use 접두사 규칙을 설명할 수 있다",
     "커스텀 Hook을 사용하는 각 컴포넌트의 상태가 독립적임을 이해한다",

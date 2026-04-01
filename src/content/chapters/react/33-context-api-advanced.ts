@@ -211,6 +211,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Context를 상태 관리 도구로 쓸 때는 값과 업데이터를 분리하고, Provider를 잘게 나누어 불필요한 리렌더를 최소화해야 한다.",
   checklist: [
     "State와 Dispatch Context를 분리하여 리렌더링을 최적화할 수 있다",
     "useMemo를 활용하여 Context 값의 참조 안정성을 보장할 수 있다",

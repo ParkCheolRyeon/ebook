@@ -217,6 +217,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useEffect는 렌더링 이후에 실행되는 부수효과를 선언하는 Hook이다. 의존성 배열이 '언제' 실행할지를 결정하고, 클린업 함수가 정리를 담당한다.",
   checklist: [
     "useEffect의 실행 타이밍(paint 후)을 설명할 수 있다",
     "의존성 배열의 세 가지 형태(생략, 빈 배열, 값 배열)의 차이를 설명할 수 있다",

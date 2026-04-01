@@ -204,6 +204,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React의 이벤트 핸들러는 합성 이벤트(SyntheticEvent)를 사용하며, 브라우저 차이를 추상화한다. 핸들러에서 state를 변경하면 리렌더가 트리거된다.",
   checklist: [
     "SyntheticEvent가 무엇이고 왜 사용하는지 설명할 수 있다",
     "React의 이벤트 위임 방식을 설명할 수 있다",

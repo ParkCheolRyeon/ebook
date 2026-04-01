@@ -213,6 +213,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "데이터 페칭은 useEffect + state가 기본이지만, 경쟁 조건과 로딩/에러 상태 관리가 복잡하다. 전용 라이브러리(React Query, SWR)가 이 복잡성을 해결한다.",
   checklist: [
     "useEffect 페칭에서 race condition이 발생하는 원리를 설명할 수 있다",
     "AbortController를 사용하여 요청을 취소할 수 있다",

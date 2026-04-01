@@ -181,6 +181,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "프로토타입 체인은 객체들이 [[Prototype]]으로 연결된 단방향 리스트다. 최상위는 항상 Object.prototype이며, 여기서도 못 찾으면 undefined를 반환한다.",
   checklist: [
     "프로퍼티 탐색이 프로토타입 체인을 어떻게 따라가는지 설명할 수 있다",
     "프로퍼티 셰도잉과 delete로 인한 동작 변화를 설명할 수 있다",

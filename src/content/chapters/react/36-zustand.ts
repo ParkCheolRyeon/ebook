@@ -198,6 +198,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Zustand는 보일러플레이트가 거의 없는 경량 상태 관리 라이브러리다. create 하나로 스토어를 만들고, 컴포넌트에서 Hook처럼 꺼내 쓰면 된다.",
   checklist: [
     "create 함수로 Zustand 스토어를 생성하고 컴포넌트에서 사용할 수 있다",
     "셀렉터 함수로 필요한 상태만 구독하여 리렌더링을 최적화할 수 있다",

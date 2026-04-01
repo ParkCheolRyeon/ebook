@@ -229,6 +229,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "인증 가드, 레이아웃 라우트, 지연 로딩 라우트 등의 패턴을 조합하면 실무 수준의 라우팅 아키텍처를 구성할 수 있다.",
   checklist: [
     "pathless Route로 다중 레이아웃을 구성할 수 있다",
     "location.state를 활용한 모달 라우트 패턴을 구현할 수 있다",

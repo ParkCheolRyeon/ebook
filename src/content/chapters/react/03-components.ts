@@ -188,6 +188,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "컴포넌트는 UI를 독립적이고 재사용 가능한 조각으로 나눈 것이다. 입력(props)을 받아 화면(JSX)을 반환하는 함수라고 생각하면 된다.",
   checklist: [
     "함수 컴포넌트의 기본 구조를 작성할 수 있다",
     "children prop을 활용한 합성 패턴을 구현할 수 있다",

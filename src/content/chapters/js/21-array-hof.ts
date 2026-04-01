@@ -173,6 +173,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "map은 변환, filter는 선별, reduce는 누적 — 이 세 가지 고차함수만으로 대부분의 배열 처리를 선언적이고 가독성 좋게 해결할 수 있다.",
   checklist: [
     "map, filter, reduce, forEach의 반환값과 원본 배열 변경 여부를 안다",
     "reduce의 accumulator 초기값이 없을 때의 동작을 설명할 수 있다",

@@ -192,6 +192,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "코드 스플리팅은 번들을 작은 청크로 나눠 초기 로딩 속도를 높인다. React.lazy + Suspense로 라우트 단위 분할이 가장 효과적이다.",
   checklist: [
     "dynamic import()가 번들 분할을 트리거하는 원리를 이해한다",
     "React.lazy와 Suspense의 조합 패턴을 설명할 수 있다",

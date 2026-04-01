@@ -249,6 +249,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "중첩 라우팅(Outlet), 동적 파라미터(:id), loader/action 패턴은 복잡한 라우팅 구조를 선언적으로 관리할 수 있게 한다.",
   checklist: [
     "loader를 사용하여 컴포넌트 렌더링 전에 데이터를 로드할 수 있다",
     "action과 Form을 사용하여 폼 제출을 처리할 수 있다",

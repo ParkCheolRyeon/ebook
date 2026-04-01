@@ -241,6 +241,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Symbol은 절대 충돌하지 않는 유일한 식별자다. 객체의 숨은 프로퍼티 키나 이터러블 프로토콜(Symbol.iterator) 같은 언어 내부 메커니즘에 사용된다.",
   checklist: [
     "Symbol()이 항상 고유한 값을 생성하는 이유를 설명할 수 있다",
     "Symbol.for()와 Symbol()의 차이를 설명할 수 있다",

@@ -236,6 +236,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useDeferredValue와 useTransition은 긴급하지 않은 업데이트를 지연시켜 UI 반응성을 유지한다. 무거운 리렌더를 사용자 입력보다 낮은 우선순위로 처리하는 것이 핵심이다.",
   checklist: [
     "긴급 업데이트와 비긴급 업데이트의 차이를 설명할 수 있다",
     "useTransition의 startTransition과 isPending 사용법을 이해한다",

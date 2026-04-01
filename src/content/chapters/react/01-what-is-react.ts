@@ -160,6 +160,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React는 UI를 선언적으로 기술하는 라이브러리다. '화면이 어떤 상태여야 하는지'만 선언하면, DOM 업데이트는 React가 알아서 처리한다.",
   checklist: [
     "명령형 프로그래밍과 선언적 프로그래밍의 차이를 설명할 수 있다",
     "가상 DOM의 역할과 재조정 과정을 설명할 수 있다",

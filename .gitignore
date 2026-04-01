@@ -25,3 +25,5 @@ dist-ssr
 .superpowers/
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+.vercel
+.env*.local

@@ -257,6 +257,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "이벤트 위임은 개별 자식 대신 부모에 하나의 핸들러를 등록하는 패턴이다. 버블링을 이용하므로 동적으로 추가되는 요소도 자동으로 처리된다.",
   checklist: [
     "이벤트 위임이 버블링을 어떻게 활용하는지 설명할 수 있다",
     "event.target과 event.currentTarget의 차이를 명확히 설명할 수 있다",

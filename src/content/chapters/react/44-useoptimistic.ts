@@ -245,6 +245,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useOptimistic은 서버 응답을 기다리지 않고 UI를 즉시 업데이트한 뒤, 실패 시 롤백하는 패턴을 React 내장 Hook으로 간단하게 구현할 수 있게 한다.",
   checklist: [
     "useOptimistic의 동작 원리와 자동 롤백 메커니즘을 설명할 수 있다",
     "useOptimistic과 form action을 조합하여 낙관적 UI를 구현할 수 있다",

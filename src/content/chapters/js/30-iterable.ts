@@ -215,6 +215,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "이터러블은 Symbol.iterator 메서드를 가진 객체로, for...of와 스프레드 연산자로 순회할 수 있다. 배열, 문자열, Map, Set 모두 이터러블이다.",
   checklist: [
     "이터러블 프로토콜과 이터레이터 프로토콜의 차이를 설명할 수 있다",
     "Symbol.iterator가 무엇을 반환해야 하는지 설명할 수 있다",

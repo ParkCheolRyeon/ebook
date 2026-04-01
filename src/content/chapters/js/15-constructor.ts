@@ -178,6 +178,8 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway:
+    "생성자 함수는 new 키워드와 함께 호출되어 새 객체를 만들고 this를 바인딩한 뒤 반환한다. ES6 class 이전에 객체를 찍어내는 공장 역할을 했다.",
   checklist: [
     "생성자 함수의 관례(파스칼 케이스, new 호출)를 설명할 수 있다",
     "new 연산자의 4단계 동작을 순서대로 설명할 수 있다",

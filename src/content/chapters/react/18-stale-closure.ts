@@ -228,6 +228,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Stale closure는 Hook의 콜백이 과거 렌더의 state/props 값을 캡처하여 발생한다. 의존성 배열을 정확히 설정하거나 ref를 사용하면 해결된다.",
   checklist: [
     "Stale closure가 발생하는 원리를 JavaScript 클로저로 설명할 수 있다",
     "useState 함수형 업데이트로 stale state를 해결할 수 있다",

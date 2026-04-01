@@ -168,6 +168,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Render Props와 HOC는 Hook 이전에 로직을 재사용하던 패턴이다. 현재는 커스텀 Hook이 대부분을 대체하지만, 라이브러리 API에서 여전히 만날 수 있다.",
   checklist: [
     "HOC의 구현 원리와 사용 사례를 설명할 수 있다",
     "Render Props 패턴과 children as function을 이해한다",

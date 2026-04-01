@@ -216,6 +216,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "strict mode는 자바스크립트의 위험한 문법을 에러로 바꿔준다. 암묵적 전역 변수 생성, 중복 파라미터, this의 undefined 바인딩 등을 방지한다.",
   checklist: [
     "'use strict'를 적용하는 방법(파일/함수 단위)을 안다",
     "암묵적 전역 변수 생성이 왜 문제이고 strict mode가 이를 어떻게 차단하는지 설명할 수 있다",

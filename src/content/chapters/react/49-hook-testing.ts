@@ -187,6 +187,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "커스텀 Hook은 renderHook으로 테스트하고, act()로 상태 변경을 감싸야 한다. Hook이 복잡할수록 테스트의 가치가 커진다.",
   checklist: [
     "renderHook으로 커스텀 Hook을 독립 테스트할 수 있다",
     "act()의 역할과 필요한 상황을 이해한다",

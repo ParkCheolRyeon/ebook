@@ -174,6 +174,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Error Boundary는 하위 컴포넌트 트리의 렌더링 에러를 잡아 fallback UI를 보여준다. 현재 클래스 컴포넌트로만 구현 가능하며, 이벤트 핸들러 에러는 잡지 못한다.",
   checklist: [
     "Error Boundary가 잡는 에러와 잡지 못하는 에러를 구분할 수 있다",
     "getDerivedStateFromError와 componentDidCatch의 차이를 안다",

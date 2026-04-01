@@ -167,6 +167,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "String, Number, Math, Date는 가장 자주 쓰이는 빌트인이다. 특히 부동소수점 오차(0.1+0.2 !== 0.3)와 Date의 월 인덱스(0부터 시작)는 반드시 기억해야 한다.",
   checklist: [
     "String의 slice, split, trim, padStart, includes 메서드를 사용할 수 있다",
     "템플릿 리터럴로 표현식을 문자열에 삽입할 수 있다",

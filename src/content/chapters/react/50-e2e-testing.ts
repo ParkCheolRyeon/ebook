@@ -177,6 +177,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "E2E 테스트는 실제 브라우저에서 전체 사용자 흐름을 검증한다. Cypress나 Playwright로 핵심 시나리오만 커버하고, 나머지는 단위·통합 테스트에 맡긴다.",
   checklist: [
     "Playwright와 Cypress의 차이를 설명할 수 있다",
     "페이지 오브젝트 패턴을 구현할 수 있다",

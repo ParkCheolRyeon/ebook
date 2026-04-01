@@ -250,6 +250,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Proxy는 객체의 기본 동작(읽기, 쓰기, 삭제 등)을 가로채는 트랩을 설정할 수 있고, Reflect는 그 기본 동작을 안전하게 수행하는 메서드를 제공한다.",
   checklist: [
     "Proxy의 기본 문법과 target/handler의 역할을 설명할 수 있다",
     "get, set, has, deleteProperty 트랩을 구현할 수 있다",

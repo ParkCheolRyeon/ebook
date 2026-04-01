@@ -174,6 +174,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Promise는 '미래에 완료될 비동기 작업의 결과값'을 나타내는 객체다. pending → fulfilled 또는 rejected로 한 번만 전이되며, then/catch 체이닝으로 흐름을 제어한다.",
   checklist: [
     "Promise의 세 가지 상태(pending, fulfilled, rejected)를 설명할 수 있다",
     "new Promise((resolve, reject) => {})로 Promise를 생성할 수 있다",

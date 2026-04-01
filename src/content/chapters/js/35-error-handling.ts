@@ -264,6 +264,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "try/catch는 런타임 에러를 잡는 안전망이다. 에러를 무시하지 말고, 복구 가능한 에러만 catch하며, 예상 가능한 에러는 조건문으로 미리 방지하라.",
   checklist: [
     "Error 내장 타입들(TypeError, ReferenceError 등)을 나열할 수 있다",
     "try/catch/finally의 실행 순서를 정확히 설명할 수 있다",

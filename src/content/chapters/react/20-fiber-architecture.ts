@@ -175,6 +175,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Fiber는 React의 렌더링 작업을 작은 단위로 쪼개어 우선순위에 따라 중단·재개할 수 있게 한 아키텍처다. 이것이 Concurrent Mode와 Suspense의 기반이다.",
   checklist: [
     "Fiber 노드의 구조(child, sibling, return)를 설명할 수 있다",
     "작업 단위(unit of work)와 양보 지점의 관계를 이해한다",

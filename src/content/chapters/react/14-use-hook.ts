@@ -194,6 +194,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React 19의 use() Hook은 Promise나 Context를 컴포넌트 안에서 직접 읽을 수 있게 한다. 조건문 안에서도 호출 가능한 유일한 Hook이다.",
   checklist: [
     "use()가 Promise와 Context를 읽는 방법을 설명할 수 있다",
     "use()가 조건문 안에서 호출 가능한 이유를 설명할 수 있다",

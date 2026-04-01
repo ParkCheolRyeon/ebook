@@ -207,6 +207,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React Compiler는 useMemo/useCallback을 자동으로 삽입해주는 빌드 타임 도구다. 수동 메모이제이션의 부담을 줄이고, 성능 최적화를 컴파일러에 위임할 수 있다.",
   checklist: [
     "React Compiler가 하는 일(자동 메모이제이션)을 설명할 수 있다",
     "컴파일러가 전제하는 React 규칙을 알고 있다",

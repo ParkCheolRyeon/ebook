@@ -232,6 +232,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "state를 최대한 아래로 내리고, 변하지 않는 부분을 children으로 분리하면 메모이제이션 없이도 불필요한 리렌더를 줄일 수 있다.",
   checklist: [
     "상태 내리기 패턴으로 리렌더링 범위를 줄일 수 있다",
     "children as props 패턴이 리렌더링을 방지하는 원리를 설명할 수 있다",

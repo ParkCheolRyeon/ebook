@@ -215,6 +215,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "async/await는 Promise를 동기 코드처럼 읽히게 만드는 문법이다. async 함수는 항상 Promise를 반환하고, await는 Promise가 resolve될 때까지 실행을 멈춘다.",
   checklist: [
     "async 함수가 항상 Promise를 반환한다는 것을 안다",
     "await가 이벤트 루프를 블로킹하지 않는다는 것을 안다",

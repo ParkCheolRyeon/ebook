@@ -206,6 +206,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "콜백은 비동기의 가장 기본적인 패턴이다. 하지만 중첩이 깊어지면 콜백 지옥이 되므로, Promise나 async/await로 대체하는 것이 현대적인 방법이다.",
   checklist: [
     "콜백 함수의 개념과 동기/비동기 콜백의 차이를 설명할 수 있다",
     "에러 우선 콜백 패턴을 구현할 수 있다",

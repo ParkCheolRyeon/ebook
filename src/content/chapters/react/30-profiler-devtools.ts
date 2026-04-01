@@ -229,6 +229,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React DevTools의 Profiler로 어떤 컴포넌트가 얼마나 자주, 왜 리렌더되는지 확인할 수 있다. 최적화는 반드시 측정 → 분석 → 적용 순서로 진행하라.",
   checklist: [
     "React DevTools의 Components 탭과 Profiler 탭의 용도를 알고 있다",
     "렌더링 하이라이트 기능을 활성화할 수 있다",

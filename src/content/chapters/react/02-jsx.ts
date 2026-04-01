@@ -169,6 +169,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "JSX는 JavaScript 안에 HTML처럼 생긴 문법을 쓸 수 있게 해주는 확장이다. 컴파일 시 React.createElement() 호출로 변환되며, 결국 자바스크립트 객체를 만든다.",
   checklist: [
     "JSX가 Babel에 의해 어떻게 변환되는지 설명할 수 있다",
     "JSX 안에서 표현식과 문(statement)의 차이를 이해한다",

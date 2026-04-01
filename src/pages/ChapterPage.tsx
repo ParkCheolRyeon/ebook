@@ -147,6 +147,16 @@ export default function ChapterPage() {
             </div>
           ))}
 
+          {chapter.keyTakeaway && (
+            <div className="mb-10 rounded-2xl border border-indigo-100 bg-indigo-50/50 px-5 py-4">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-lg">💎</span>
+                <h2 className="text-lg font-bold text-zinc-900">한줄 요약</h2>
+              </div>
+              <p className="text-[15px] leading-7 font-medium text-indigo-900">{chapter.keyTakeaway}</p>
+            </div>
+          )}
+
           {chapter.checklist.length > 0 && (
             <div className="mb-10">
               <div className="mb-4 flex items-center gap-2">

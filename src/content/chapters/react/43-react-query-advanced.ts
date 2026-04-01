@@ -223,6 +223,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Optimistic update, infinite scroll, prefetching, mutation 등의 고급 패턴을 조합하면 네이티브 앱 수준의 사용자 경험을 웹에서 구현할 수 있다.",
   checklist: [
     "onMutate/onError/onSettled을 활용한 낙관적 업데이트 패턴을 구현할 수 있다",
     "useInfiniteQuery로 무한 스크롤을 구현할 수 있다",

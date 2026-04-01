@@ -180,6 +180,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React 18+에서는 모든 상태 업데이트가 자동으로 배칭된다. 여러 setState 호출이 하나의 리렌더로 합쳐져 불필요한 렌더링을 줄인다.",
   checklist: [
     "배칭이 무엇이고 왜 필요한지 설명할 수 있다",
     "React 17과 18의 배칭 차이를 설명할 수 있다",

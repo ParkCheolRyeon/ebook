@@ -181,6 +181,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "좋은 컴포넌트는 단일 책임을 지키고, props로 제어 가능하며, 합성이 쉽다. 컴포넌트가 너무 많은 props를 받는다면 분리할 시점이다.",
   checklist: [
     "단일 책임 원칙을 컴포넌트에 적용할 수 있다",
     "상속 대신 합성으로 컴포넌트를 설계할 수 있다",

@@ -38,6 +38,7 @@ export interface Chapter {
   prerequisites: string[];
   estimatedMinutes: number;
   sections: ChapterSection[];
+  keyTakeaway?: string;
   checklist: string[];
   quiz: QuizQuestion[];
 }

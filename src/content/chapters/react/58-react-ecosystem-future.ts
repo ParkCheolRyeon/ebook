@@ -173,6 +173,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React 생태계는 Server Components, React Compiler, 새로운 Hook들로 빠르게 진화 중이다. 기초를 단단히 하면 어떤 변화에도 적응할 수 있다.",
   checklist: [
     "React Compiler의 목적과 동작 원리를 이해한다",
     "Server Components와 Client Components의 차이를 설명할 수 있다",

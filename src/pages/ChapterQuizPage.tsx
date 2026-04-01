@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { isValidSubject, type Subject } from "@/types/chapter";
-import { useChapter } from "@/hooks/useChapter";
+import { useChapter, getAdjacentChapters } from "@/hooks/useChapter";
 import { useProgress } from "@/hooks/useProgress";
 import Spinner from "@/components/common/Spinner";
 import QuizProgress from "@/components/quiz/QuizProgress";
@@ -20,6 +20,7 @@ export default function ChapterQuizPage() {
 
   const { chapter, loading } = useChapter(subject, id!);
   const { saveChapterQuiz } = useProgress();
+  const { next } = getAdjacentChapters(subject, id!);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
@@ -80,7 +81,8 @@ export default function ChapterQuizPage() {
             questions={questions}
             answers={answers}
             onRetry={handleRetry}
-            onDone={() => navigate(`/chapter/${subject}/${id}`)}
+            onDone={() => navigate(next ? `/chapter/${subject}/${next}` : `/home`)}
+            doneLabel={next ? "다음 챕터로" : "홈으로"}
           />
         ) : (
           <div className="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm">

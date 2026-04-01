@@ -183,6 +183,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "컴포넌트 테스트는 렌더링 → 상호작용 → 결과 확인의 흐름을 따른다. 스냅샷은 보조 수단이고, 사용자 시나리오 기반 테스트가 가장 가치 있다.",
   checklist: [
     "findBy 쿼리로 비동기 렌더링을 테스트할 수 있다",
     "MSW로 API 응답을 모킹하는 방법을 안다",

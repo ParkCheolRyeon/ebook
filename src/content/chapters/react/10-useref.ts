@@ -201,6 +201,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useRef는 리렌더 없이 값을 유지하는 '상자'다. DOM 접근뿐 아니라 이전 값 기억, 타이머 ID 저장 등 렌더링과 무관한 값을 보관할 때 쓴다.",
   checklist: [
     "useRef와 useState의 차이를 설명할 수 있다",
     "useRef로 DOM 요소에 접근하는 방법을 구현할 수 있다",

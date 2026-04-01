@@ -182,6 +182,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "React의 렌더링은 Render Phase(Virtual DOM 생성 + diff)와 Commit Phase(실제 DOM 반영)로 나뉜다. Render는 순수해야 하고, 부수효과는 Commit 이후에 실행된다.",
   checklist: [
     "렌더 단계와 커밋 단계의 차이를 설명할 수 있다",
     "렌더 함수가 순수해야 하는 이유를 이해한다",

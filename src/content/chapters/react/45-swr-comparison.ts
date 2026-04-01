@@ -234,6 +234,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "SWR은 stale-while-revalidate 전략의 심플한 구현이고, React Query는 더 풍부한 캐시 제어와 mutation을 제공한다. 프로젝트 규모에 맞게 선택하라.",
   checklist: [
     "stale-while-revalidate 전략의 동작 원리를 설명할 수 있다",
     "useSWR의 기본 사용법과 주요 옵션을 활용할 수 있다",

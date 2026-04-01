@@ -229,6 +229,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "createAsyncThunk로 비동기 로직을, RTK Query로 서버 상태 캐싱을 처리한다. 서버 상태와 클라이언트 상태를 구분하는 것이 현대 Redux의 핵심이다.",
   checklist: [
     "createAsyncThunk로 비동기 작업을 처리하고 extraReducers로 상태를 관리할 수 있다",
     "RTK Query의 createApi로 엔드포인트를 정의하고 자동 생성된 Hook을 사용할 수 있다",

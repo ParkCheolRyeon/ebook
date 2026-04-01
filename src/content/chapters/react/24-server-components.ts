@@ -205,6 +205,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Server Components는 서버에서만 실행되어 번들 크기에 포함되지 않는다. 데이터베이스나 파일시스템에 직접 접근할 수 있고, 클라이언트 컴포넌트와 자유롭게 조합된다.",
   checklist: [
     "서버 컴포넌트와 클라이언트 컴포넌트의 차이를 설명할 수 있다",
     "'use client' 지시어의 역할과 경계 개념을 이해한다",

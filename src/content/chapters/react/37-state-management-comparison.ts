@@ -190,6 +190,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Context는 저빈도 전역값, Redux는 복잡한 클라이언트 상태, Zustand/Jotai는 간결한 상태, React Query는 서버 상태에 적합하다. 은탄환은 없다.",
   checklist: [
     "Context API, Redux Toolkit, Zustand의 장단점을 비교 설명할 수 있다",
     "프로젝트 규모에 따라 적절한 상태 관리 도구를 선택할 수 있다",

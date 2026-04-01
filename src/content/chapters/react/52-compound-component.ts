@@ -190,6 +190,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Compound Component 패턴은 부모-자식 컴포넌트가 암묵적으로 상태를 공유하여, 사용하는 쪽에서 유연하게 조합할 수 있는 API를 제공한다.",
   checklist: [
     "Compound Component 패턴의 구조를 설명할 수 있다",
     "Context를 활용한 암묵적 상태 공유를 구현할 수 있다",

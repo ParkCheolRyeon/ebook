@@ -159,6 +159,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Map은 키에 어떤 타입이든 쓸 수 있는 사전이고, Set은 중복 없는 값의 모음이다. 객체 키가 필요하거나 중복 제거가 필요하면 Object/Array 대신 이들을 선택하라.",
   checklist: [
     "Map과 일반 객체의 차이와 각각의 사용 시나리오를 설명할 수 있다",
     "Set으로 배열의 중복을 제거하는 방법을 안다",

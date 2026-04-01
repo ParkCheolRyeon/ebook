@@ -200,6 +200,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "조건부 렌더링은 삼항 연산자나 &&로, 리스트는 map()으로 구현한다. 리스트에는 반드시 안정적인 key를 부여해야 React가 효율적으로 DOM을 업데이트한다.",
   checklist: [
     "삼항, &&, early return 패턴을 상황에 맞게 선택할 수 있다",
     "&& 연산자의 falsy 함정을 이해하고 회피할 수 있다",

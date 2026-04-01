@@ -217,6 +217,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "useReducer는 복잡한 상태 로직을 reducer 함수로 분리하여 state 변경을 예측 가능하게 만든다. 여러 값이 연관되어 변하는 상태에 적합하다.",
   checklist: [
     "useReducer의 reducer, dispatch, action 개념을 설명할 수 있다",
     "useState vs useReducer 선택 기준을 제시할 수 있다",

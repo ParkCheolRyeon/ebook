@@ -240,6 +240,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "DOM은 HTML 문서를 트리 구조의 객체 모델로 표현한 것이다. 자바스크립트는 이 트리의 노드를 탐색, 생성, 수정, 삭제하여 화면을 동적으로 변경한다.",
   checklist: [
     "DOM 트리의 개념과 주요 노드 타입(Element, Text, Comment)을 설명할 수 있다",
     "querySelector와 getElementById의 차이와 사용 시기를 설명할 수 있다",

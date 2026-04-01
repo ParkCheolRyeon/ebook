@@ -188,6 +188,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "Container/Presentational 패턴은 데이터 로직과 UI를 분리한다. Hook이 Container 역할을 대체하면서 패턴은 진화했지만, 관심사 분리 원칙 자체는 여전히 유효하다.",
   checklist: [
     "Container/Presentational 패턴의 원래 의도를 이해한다",
     "Hook 시대에 이 패턴이 어떻게 변화했는지 설명할 수 있다",

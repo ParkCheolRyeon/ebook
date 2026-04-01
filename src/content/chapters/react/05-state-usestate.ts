@@ -195,6 +195,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "state는 컴포넌트가 스스로 관리하는 변경 가능한 데이터다. setState를 호출하면 React가 리렌더를 스케줄링하고, 새 state로 UI를 다시 그린다.",
   checklist: [
     "useState의 반환값과 사용법을 설명할 수 있다",
     "왜 상태를 불변하게 업데이트해야 하는지 설명할 수 있다",

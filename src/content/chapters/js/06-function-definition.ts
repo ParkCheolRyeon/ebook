@@ -185,6 +185,8 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway:
+    "함수 선언문은 호이스팅되고, 함수 표현식은 호이스팅되지 않는다. 어떤 방식을 쓰든 하나의 컨벤션을 일관되게 유지하는 것이 중요하다.",
   checklist: [
     "함수 선언문과 함수 표현식의 호이스팅 차이를 설명할 수 있다",
     "매개변수(parameter)와 인자(argument)의 차이를 설명할 수 있다",

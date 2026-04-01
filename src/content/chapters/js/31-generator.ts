@@ -219,6 +219,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "제너레이터는 실행을 중간에 멈추고(yield) 나중에 재개할 수 있는 특별한 함수다. 이터러블 프로토콜과 결합하면 지연 평가와 무한 시퀀스를 우아하게 구현할 수 있다.",
   checklist: [
     "function*으로 제너레이터 함수를 선언하고 yield로 값을 방출할 수 있다",
     "next(), return(), throw()의 동작 방식을 설명할 수 있다",

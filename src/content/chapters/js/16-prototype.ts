@@ -176,6 +176,7 @@ const chapter: Chapter = {
       content: "",
     },
   ],
+  keyTakeaway: "모든 객체는 숨겨진 [[Prototype]] 링크로 다른 객체와 연결된다. 프로퍼티를 찾을 때 자기 자신에 없으면 이 링크를 따라 올라가며 탐색한다.",
   checklist: [
     "__proto__와 Constructor.prototype의 차이를 설명할 수 있다",
     "new로 생성된 인스턴스의 [[Prototype]] 연결을 그림으로 표현할 수 있다",
