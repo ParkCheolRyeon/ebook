@@ -11,4 +11,8 @@ export const jsChapters: Record<string, ChapterLoader> = {
   "06-function-definition": () => import("./06-function-definition"),
   "07-first-class-object": () => import("./07-first-class-object"),
   "08-arrow-function": () => import("./08-arrow-function"),
+  "09-scope": () => import("./09-scope"),
+  "10-lexical-scope": () => import("./10-lexical-scope"),
+  "11-execution-context": () => import("./11-execution-context"),
+  "12-closure": () => import("./12-closure"),
 };
