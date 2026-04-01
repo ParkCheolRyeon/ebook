@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { ProgressProvider } from "@/hooks/useProgress";
 import LoginPage from "@/pages/LoginPage";
+import SubjectSelectPage from "@/pages/SubjectSelectPage";
 import HomePage from "@/pages/HomePage";
 import ChapterPage from "@/pages/ChapterPage";
 import ChapterQuizPage from "@/pages/ChapterQuizPage";
@@ -21,7 +22,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={authenticated ? <Navigate to="/home" replace /> : <LoginPage />} />
-      <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+      <Route path="/home" element={<ProtectedRoute><SubjectSelectPage /></ProtectedRoute>} />
+      <Route path="/home/:subject" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
       <Route path="/chapter/:subject/:id" element={<ProtectedRoute><ChapterPage /></ProtectedRoute>} />
       <Route path="/quiz/chapter/:subject/:id" element={<ProtectedRoute><ChapterQuizPage /></ProtectedRoute>} />
       <Route path="/quiz/mid/:subject/:id" element={<ProtectedRoute><MidQuizPage /></ProtectedRoute>} />

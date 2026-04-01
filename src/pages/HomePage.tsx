@@ -1,20 +1,18 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Subject } from "@/types/chapter";
+import { isValidSubject, type Subject } from "@/types/chapter";
 import { roadmaps, midQuizzes, getTotalChapters } from "@/content/roadmap";
 import { useProgress } from "@/hooks/useProgress";
-
 import ProgressRing from "@/components/roadmap/ProgressRing";
 import RoadmapCard from "@/components/roadmap/RoadmapCard";
 import MidQuizBanner from "@/components/roadmap/MidQuizBanner";
 
-const AVAILABLE_SUBJECTS: { key: Subject; label: string }[] = [
-  { key: "js", label: "JavaScript" },
-];
-
 export default function HomePage() {
-  const [subject, setSubject] = useState<Subject>("js");
+  const { subject: subjectParam } = useParams<{ subject: string }>();
+  if (!subjectParam || !isValidSubject(subjectParam)) {
+    return <Navigate to="/home" replace />;
+  }
+  const subject: Subject = subjectParam;
   const { progress, getSubjectStats } = useProgress();
   const groups = roadmaps[subject];
   const midQuizList = midQuizzes[subject];
@@ -33,23 +31,19 @@ export default function HomePage() {
     <div className="min-h-[100dvh] bg-[#fafafa]">
       <div className="px-4 pt-6 pb-4">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-bold text-zinc-900">학습 로드맵</h1>
-            <p className="mt-0.5 text-xs text-zinc-500">{stats.completed} / {stats.total} 챕터 완료</p>
+          <div className="flex items-center gap-2">
+            <Link to="/home" className="text-zinc-400 hover:text-zinc-600">
+              <svg className="size-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </Link>
+            <div>
+              <h1 className="text-xl font-bold text-zinc-900">학습 로드맵</h1>
+              <p className="mt-0.5 text-xs text-zinc-500">{stats.completed} / {stats.total} 챕터 완료</p>
+            </div>
           </div>
           <ProgressRing percent={stats.percent} />
         </div>
-
-        {AVAILABLE_SUBJECTS.length > 1 && (
-          <div className="mt-4 flex gap-2">
-            {AVAILABLE_SUBJECTS.map((s) => (
-              <button key={s.key} type="button" onClick={() => setSubject(s.key)}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${subject === s.key ? "bg-zinc-900 text-white" : "bg-white text-zinc-500 hover:bg-zinc-100"}`}>
-                {s.label}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
       <div className="px-4 pb-8">
