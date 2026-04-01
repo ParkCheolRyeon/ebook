@@ -1,11 +1,12 @@
 import type { Chapter, Subject } from "@/types/chapter";
 import { jsChapters } from "./js";
+import { reactChapters } from "./react";
 
 type ChapterLoader = () => Promise<{ default: Chapter }>;
 
 const chapterLoaders: Record<Subject, Record<string, ChapterLoader>> = {
   js: jsChapters,
-  react: {},
+  react: reactChapters,
   next: {},
   cs: {},
   network: {},
