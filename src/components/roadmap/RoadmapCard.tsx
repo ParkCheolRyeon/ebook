@@ -36,14 +36,12 @@ const dotStyles: Record<ChapterStatus, string> = {
 export default function RoadmapCard({ group, chapters, subject, progress, index }: RoadmapCardProps) {
   const completedCount = chapters.filter((id) => progress.chapters[id]?.isRead).length;
   const progressPercent = chapters.length > 0 ? Math.round((completedCount / chapters.length) * 100) : 0;
-  const isFullyLocked = completedCount === 0 && index > 0;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className={`rounded-xl bg-white p-4 shadow-sm ${isFullyLocked ? "opacity-50" : ""}`}
+      className="rounded-xl bg-white p-4 shadow-sm"
     >
       <div className="mb-2.5 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-zinc-900">{group}</h3>
@@ -65,7 +63,7 @@ export default function RoadmapCard({ group, chapters, subject, progress, index 
             </span>
           );
 
-          if (chapterExists && status !== "locked") {
+          if (chapterExists) {
             return <Link key={id} to={`/chapter/${subject}/${id}`}>{pill}</Link>;
           }
           return pill;

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
 
 interface HeaderProps {
   title: string;
@@ -10,7 +9,6 @@ interface HeaderProps {
 
 export default function Header({ title, subtitle, showBack = true, backTo }: HeaderProps) {
   const navigate = useNavigate();
-  const { logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-10 flex items-center gap-2 border-b border-zinc-200 bg-white/95 px-4 py-2 backdrop-blur">
@@ -30,13 +28,6 @@ export default function Header({ title, subtitle, showBack = true, backTo }: Hea
         <p className="truncate text-sm font-medium text-zinc-700">{title}</p>
         {subtitle && <p className="text-xs text-zinc-500">{subtitle}</p>}
       </div>
-      <button
-        type="button"
-        onClick={logout}
-        className="rounded-lg px-2.5 py-1.5 text-xs font-medium text-zinc-400 transition hover:bg-zinc-100 hover:text-zinc-600"
-      >
-        로그아웃
-      </button>
     </header>
   );
 }

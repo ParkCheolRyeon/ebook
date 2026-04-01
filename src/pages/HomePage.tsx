@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Subject } from "@/types/chapter";
 import { roadmaps, midQuizzes, getTotalChapters } from "@/content/roadmap";
 import { useProgress } from "@/hooks/useProgress";
-import { useAuth } from "@/hooks/useAuth";
+
 import ProgressRing from "@/components/roadmap/ProgressRing";
 import RoadmapCard from "@/components/roadmap/RoadmapCard";
 import MidQuizBanner from "@/components/roadmap/MidQuizBanner";
@@ -16,7 +16,6 @@ const AVAILABLE_SUBJECTS: { key: Subject; label: string }[] = [
 export default function HomePage() {
   const [subject, setSubject] = useState<Subject>("js");
   const { progress, getSubjectStats } = useProgress();
-  const { logout } = useAuth();
   const groups = roadmaps[subject];
   const midQuizList = midQuizzes[subject];
   const totalChapters = getTotalChapters(subject);
@@ -96,11 +95,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="fixed bottom-4 right-4">
-        <button type="button" onClick={logout} className="rounded-full bg-white px-4 py-2 text-xs font-medium text-zinc-500 shadow-sm transition hover:bg-zinc-100" style={{ marginBottom: "env(safe-area-inset-bottom)" }}>
-          로그아웃
-        </button>
-      </div>
     </div>
   );
 }
