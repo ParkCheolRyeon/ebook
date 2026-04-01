@@ -3,14 +3,17 @@ import type { Chapter } from "@/types/chapter";
 type ChapterLoader = () => Promise<{ default: Chapter }>;
 
 export const reactChapters: Record<string, ChapterLoader> = {
-  "09-useeffect": () => import("./09-useeffect"),
-  "10-useref": () => import("./10-useref"),
-  "11-usememo-usecallback": () => import("./11-usememo-usecallback"),
-  "12-usereducer": () => import("./12-usereducer"),
-  "13-usecontext": () => import("./13-usecontext"),
-  "14-use-hook": () => import("./14-use-hook"),
-  "15-custom-hooks": () => import("./15-custom-hooks"),
-  "16-uselayouteffect": () => import("./16-uselayouteffect"),
-  "17-usedeferred-usetransition": () => import("./17-usedeferred-usetransition"),
-  "18-stale-closure": () => import("./18-stale-closure"),
+  "19-virtual-dom-reconciliation": () => import("./19-virtual-dom-reconciliation"),
+  "20-fiber-architecture": () => import("./20-fiber-architecture"),
+  "21-render-commit-phases": () => import("./21-render-commit-phases"),
+  "22-batching": () => import("./22-batching"),
+  "23-suspense": () => import("./23-suspense"),
+  "24-server-components": () => import("./24-server-components"),
+  "25-understanding-rerender": () => import("./25-understanding-rerender"),
+  "26-react-memo": () => import("./26-react-memo"),
+  "27-react-compiler": () => import("./27-react-compiler"),
+  "28-code-splitting": () => import("./28-code-splitting"),
+  "29-list-virtualization": () => import("./29-list-virtualization"),
+  "30-profiler-devtools": () => import("./30-profiler-devtools"),
+  "31-rendering-optimization-patterns": () => import("./31-rendering-optimization-patterns"),
 };
