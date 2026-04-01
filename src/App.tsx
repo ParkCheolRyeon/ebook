@@ -1,13 +1,34 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import { ProgressProvider } from "@/hooks/useProgress";
+import LoginPage from "@/pages/LoginPage";
 
-function App() {
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { authenticated } = useAuth();
+  if (!authenticated) return <Navigate to="/" replace />;
+  return <>{children}</>;
+}
+
+function AppRoutes() {
+  const { authenticated } = useAuth();
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<div className="flex min-h-[100dvh] items-center justify-center px-4">Ebook App</div>} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={authenticated ? <Navigate to="/home" replace /> : <LoginPage />} />
+      <Route path="/home" element={<ProtectedRoute><div className="p-4">Home (coming soon)</div></ProtectedRoute>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <ProgressProvider>
+          <AppRoutes />
+        </ProgressProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
