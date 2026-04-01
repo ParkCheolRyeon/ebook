@@ -50,25 +50,33 @@ export default function ChapterPage() {
     return () => observer.disconnect();
   }, [chapter, markRead]);
 
-  // I6 fix: Track current section via IntersectionObserver (works on mobile)
+  // Track current section via IntersectionObserver
   const setSectionRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
     sectionRefs.current[index] = el;
   }, []);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    sectionRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setCurrentSection(i);
-        },
-        { threshold: 0.3 },
-      );
-      observer.observe(el);
-      observers.push(observer);
+    const visibleSections = new Set<number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.getAttribute("data-section-index"));
+          if (entry.isIntersecting) {
+            visibleSections.add(index);
+          } else {
+            visibleSections.delete(index);
+          }
+        });
+        if (visibleSections.size > 0) {
+          setCurrentSection(Math.min(...visibleSections));
+        }
+      },
+      { threshold: 0.1, rootMargin: "-80px 0px 0px 0px" },
+    );
+    sectionRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
     });
-    return () => observers.forEach((o) => o.disconnect());
+    return () => observer.disconnect();
   }, [chapter]);
 
   if (loading) {
@@ -128,7 +136,7 @@ export default function ChapterPage() {
           />
 
           {nonChecklistSections.map((section, i) => (
-            <div key={i} ref={setSectionRef(i)}>
+            <div key={i} ref={setSectionRef(i)} data-section-index={i}>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
