@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { ProgressProvider } from "@/hooks/useProgress";
 import LoginPage from "@/pages/LoginPage";
 import HomePage from "@/pages/HomePage";
+import ChapterPage from "@/pages/ChapterPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { authenticated } = useAuth();
@@ -17,6 +18,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={authenticated ? <Navigate to="/home" replace /> : <LoginPage />} />
       <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+      <Route path="/chapter/:subject/:id" element={<ProtectedRoute><ChapterPage /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
