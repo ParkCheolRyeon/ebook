@@ -155,6 +155,7 @@ type Quiz = ChapterQuiz | MidQuiz | FinalExam;
 // types/progress.ts
 interface ChapterProgress {
   chapterId: string;
+  subject: Subject;
   isRead: boolean;
   checklistCompleted: boolean[];
   quizScore?: {
@@ -166,6 +167,7 @@ interface ChapterProgress {
 
 interface QuizProgress {
   quizId: string;
+  subject: Subject;
   score: {
     correct: number;
     total: number;
