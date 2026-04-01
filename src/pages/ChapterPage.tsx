@@ -24,13 +24,10 @@ export default function ChapterPage() {
   const { markRead } = useProgress();
   const { prev, next } = getAdjacentChapters(subject, id!);
 
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({ top: 0 });
-    }
+    window.scrollTo({ top: 0 });
     setCurrentSection(0);
   }, [id]);
 
@@ -99,9 +96,9 @@ export default function ChapterPage() {
   const nonChecklistSections = chapter.sections.filter((s) => s.type !== "checklist");
 
   return (
-    <div className="flex h-screen flex-col bg-white">
+    <div className="min-h-[100dvh] bg-white">
       {/* Sticky header */}
-      <header className="shrink-0 border-b border-zinc-100 bg-white/90 px-4 py-3 backdrop-blur-sm">
+      <header className="sticky top-0 z-10 border-b border-zinc-100 bg-white/90 px-4 py-3 backdrop-blur-sm">
         <div className="mx-auto max-w-3xl">
           <div className="mb-2 flex items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
@@ -122,12 +119,7 @@ export default function ChapterPage() {
         </div>
       </header>
 
-      {/* Scrollable content */}
-      <div
-        ref={scrollRef}
-        className="overflow-y-auto px-4 pt-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))]"
-        style={{ height: "calc(100dvh - 80px)" }}
-      >
+      <div className="px-4 pt-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))]">
         <article className="mx-auto max-w-3xl">
           <ConnectionHint
             prevChapterId={prev}

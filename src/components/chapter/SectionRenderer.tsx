@@ -1,4 +1,5 @@
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { ChapterSection } from "@/types/chapter";
 import CodeBlock from "./CodeBlock";
 
@@ -38,8 +39,8 @@ export default function SectionRenderer({ section }: SectionRendererProps) {
       </div>
 
       {section.content && (
-        <div className="prose prose-zinc max-w-none text-[15px] leading-7 prose-headings:text-base prose-headings:font-semibold prose-p:text-zinc-700 prose-strong:text-zinc-900 prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:text-zinc-600 prose-code:before:content-none prose-code:after:content-none">
-          <Markdown>{section.content}</Markdown>
+        <div className="prose prose-zinc max-w-none text-[15px] leading-7 prose-headings:text-base prose-headings:font-semibold prose-p:text-zinc-700 prose-strong:text-zinc-900 prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:text-zinc-600 prose-code:before:content-none prose-code:after:content-none prose-table:text-sm prose-th:bg-zinc-50 prose-th:px-3 prose-th:py-2 prose-td:px-3 prose-td:py-2">
+          <Markdown remarkPlugins={[remarkGfm]}>{section.content}</Markdown>
         </div>
       )}
 

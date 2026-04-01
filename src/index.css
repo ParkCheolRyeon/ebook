@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import "prismjs/themes/prism-tomorrow.css";
+@import "prismjs/themes/prism.css";
 
 :root {
   --background: #fafafa;

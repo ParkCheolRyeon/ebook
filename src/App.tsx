@@ -7,6 +7,7 @@ import ChapterPage from "@/pages/ChapterPage";
 import ChapterQuizPage from "@/pages/ChapterQuizPage";
 import MidQuizPage from "@/pages/MidQuizPage";
 import FinalExamPage from "@/pages/FinalExamPage";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { authenticated } = useAuth();
@@ -36,6 +37,7 @@ export default function App() {
       <AuthProvider>
         <ProgressProvider>
           <AppRoutes />
+          <ScrollToTop />
         </ProgressProvider>
       </AuthProvider>
     </BrowserRouter>

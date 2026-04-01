@@ -14,8 +14,8 @@ export default function Checklist({ chapterId, subject, items }: ChecklistProps)
   return (
     <div className="space-y-2">
       {items.map((item, i) => (
-        <label key={i} className="flex items-start gap-3 rounded-lg p-2 transition hover:bg-zinc-50 cursor-pointer">
-          <input type="checkbox" checked={completed[i] ?? false} onChange={() => toggle(i)} className="mt-0.5 size-4 rounded border-zinc-300 text-indigo-500 focus:ring-indigo-500" />
+        <label key={i} className="flex items-center gap-3 rounded-lg p-2 transition hover:bg-zinc-50 cursor-pointer">
+          <input type="checkbox" checked={completed[i] ?? false} onChange={() => toggle(i)} className="size-4 shrink-0 rounded border-zinc-300 text-indigo-500 focus:ring-indigo-500" />
           <span className={`text-sm leading-6 ${completed[i] ? "text-zinc-400 line-through" : "text-zinc-700"}`}>{item}</span>
         </label>
       ))}
