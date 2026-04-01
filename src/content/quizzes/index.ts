@@ -12,7 +12,14 @@ const midQuizLoaders: Record<Subject, Record<string, MidQuizLoader>> = {
     "mid-04": () => import("./js/mid/mid-04"),
     "mid-05": () => import("./js/mid/mid-05"),
   },
-  react: {},
+  react: {
+    "mid-01": () => import("./react/mid/mid-01"),
+    "mid-02": () => import("./react/mid/mid-02"),
+    "mid-03": () => import("./react/mid/mid-03"),
+    "mid-04": () => import("./react/mid/mid-04"),
+    "mid-05": () => import("./react/mid/mid-05"),
+    "mid-06": () => import("./react/mid/mid-06"),
+  },
   next: {},
   cs: {},
   network: {},
@@ -22,7 +29,7 @@ const midQuizLoaders: Record<Subject, Record<string, MidQuizLoader>> = {
 
 const finalExamLoaders: Record<Subject, FinalExamLoader | null> = {
   js: () => import("./js/final"),
-  react: null,
+  react: () => import("./react/final"),
   next: null,
   cs: null,
   network: null,
