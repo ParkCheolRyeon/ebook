@@ -31,6 +31,13 @@ code[class*="language-"] {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
+/* Prevent mobile Safari auto-zoom on input focus */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
 /* Inline code */
 :not(pre) > code {
   background: #f3f4f6;
