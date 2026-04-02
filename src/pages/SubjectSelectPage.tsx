@@ -16,7 +16,7 @@ const subjects: SubjectCard[] = [
   { key: "js", label: "JavaScript", description: "모던 자바스크립트 Deep Dive", icon: "🟨", available: true },
   { key: "react", label: "React", description: "컴포넌트 기반 UI 라이브러리", icon: "⚛️", available: true },
   { key: "next", label: "Next.js", description: "풀스택 React 프레임워크", icon: "▲", available: true },
-  { key: "typescript", label: "TypeScript", description: "타입 시스템과 고급 패턴", icon: "🔷", available: false },
+  { key: "typescript", label: "TypeScript", description: "타입 시스템과 고급 패턴", icon: "🔷", available: true },
   { key: "cs", label: "CS 기초", description: "컴퓨터 과학 핵심 개념", icon: "🖥️", available: false },
   { key: "network", label: "네트워크", description: "HTTP, TCP/IP, 웹 통신", icon: "🌐", available: false },
   { key: "infra", label: "인프라", description: "배포, CI/CD, 클라우드", icon: "☁️", available: false },

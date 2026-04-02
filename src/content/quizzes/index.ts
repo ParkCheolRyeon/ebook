@@ -29,7 +29,12 @@ const midQuizLoaders: Record<Subject, Record<string, MidQuizLoader>> = {
   cs: {},
   network: {},
   infra: {},
-  typescript: {},
+  typescript: {
+    "mid-01": () => import("./typescript/mid/mid-01"),
+    "mid-02": () => import("./typescript/mid/mid-02"),
+    "mid-03": () => import("./typescript/mid/mid-03"),
+    "mid-04": () => import("./typescript/mid/mid-04"),
+  },
 };
 
 const finalExamLoaders: Record<Subject, FinalExamLoader | null> = {
@@ -39,7 +44,7 @@ const finalExamLoaders: Record<Subject, FinalExamLoader | null> = {
   cs: null,
   network: null,
   infra: null,
-  typescript: null,
+  typescript: () => import("./typescript/final"),
 };
 
 export async function loadMidQuiz(subject: Subject, id: string): Promise<MidQuiz | null> {

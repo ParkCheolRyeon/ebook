@@ -52,7 +52,18 @@ export const roadmaps: Record<Subject, RoadmapGroup[]> = {
   cs: [],
   network: [],
   infra: [],
-  typescript: [],
+  typescript: [
+    { group: "기초", chapters: ["01-what-is-typescript", "02-basic-types", "03-type-inference", "04-functions", "05-objects-and-interfaces", "06-type-alias-vs-interface"] },
+    { group: "타입 좁히기", chapters: ["07-union-intersection", "08-type-narrowing", "09-discriminated-unions", "10-type-assertions"] },
+    { group: "제네릭", chapters: ["11-generics-basics", "12-generic-constraints", "13-generic-patterns", "14-generic-inference"] },
+    { group: "고급 타입", chapters: ["15-utility-types", "16-mapped-types", "17-conditional-types", "18-template-literal-types", "19-infer-keyword"] },
+    { group: "타입 시스템 심화", chapters: ["20-structural-typing", "21-type-compatibility", "22-declaration-merging", "23-module-types"] },
+    { group: "클래스와 OOP", chapters: ["24-classes", "25-abstract-classes", "26-decorators"] },
+    { group: "React + TypeScript", chapters: ["27-react-component-types", "28-react-hooks-types", "29-react-event-types", "30-react-advanced-patterns"] },
+    { group: "프로젝트 설정", chapters: ["31-tsconfig", "32-strict-mode"] },
+    { group: "실전 패턴", chapters: ["33-error-handling-patterns", "34-api-type-patterns"] },
+    { group: "아키텍처", chapters: ["35-type-driven-development"] },
+  ],
 };
 
 export const midQuizzes: Record<Subject, MidQuizDef[]> = {
@@ -80,7 +91,12 @@ export const midQuizzes: Record<Subject, MidQuizDef[]> = {
   cs: [],
   network: [],
   infra: [],
-  typescript: [],
+  typescript: [
+    { id: "mid-01", title: "중간 점검 1: 기초 ~ 타입 좁히기", afterGroup: "타입 좁히기", coverGroups: ["기초", "타입 좁히기"] },
+    { id: "mid-02", title: "중간 점검 2: 제네릭 ~ 고급 타입", afterGroup: "고급 타입", coverGroups: ["제네릭", "고급 타입"] },
+    { id: "mid-03", title: "중간 점검 3: 타입 시스템 ~ React+TS", afterGroup: "React + TypeScript", coverGroups: ["타입 시스템 심화", "클래스와 OOP", "React + TypeScript"] },
+    { id: "mid-04", title: "중간 점검 4: 설정 ~ 아키텍처", afterGroup: "아키텍처", coverGroups: ["프로젝트 설정", "실전 패턴", "아키텍처"] },
+  ],
 };
 
 export function getTotalChapters(subject: Subject): number {

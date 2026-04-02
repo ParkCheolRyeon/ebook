@@ -2,6 +2,7 @@ import type { Chapter, Subject } from "@/types/chapter";
 import { jsChapters } from "./js";
 import { reactChapters } from "./react";
 import { nextChapters } from "./next";
+import { typescriptChapters } from "./typescript";
 
 type ChapterLoader = () => Promise<{ default: Chapter }>;
 
@@ -12,7 +13,7 @@ const chapterLoaders: Record<Subject, Record<string, ChapterLoader>> = {
   cs: {},
   network: {},
   infra: {},
-  typescript: {},
+  typescript: typescriptChapters,
 };
 
 export async function loadChapter(subject: Subject, id: string): Promise<Chapter | null> {
