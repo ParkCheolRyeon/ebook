@@ -5,7 +5,7 @@ const chapter: Chapter = {
   subject: "typescript",
   title: "strict 모드와 점진적 도입",
   description:
-    "strict: true가 활성화하는 7가지 플래그를 이해하고, 기존 JavaScript 프로젝트에 TypeScript를 점진적으로 도입하는 전략을 익힙니다.",
+    "strict: true가 활성화하는 8가지 플래그를 이해하고, 기존 JavaScript 프로젝트에 TypeScript를 점진적으로 도입하는 전략을 익힙니다.",
   order: 32,
   group: "프로젝트 설정",
   prerequisites: ["31-tsconfig"],
@@ -17,7 +17,7 @@ const chapter: Chapter = {
       content:
         "strict 모드는 **운전면허 시험의 난이도 조절**과 같습니다.\n\n" +
         "가장 쉬운 모드(strict: false)에서는 신호 위반을 해도 감점이 없습니다. 시험은 통과하기 쉽지만, 실제 도로에서 사고(런타임 에러)가 날 확률이 높죠.\n\n" +
-        "strict: true는 7가지 검사 항목을 한번에 활성화합니다. 신호 위반(strictNullChecks), 차선 변경 시 깜빡이 미사용(noImplicitAny), 안전벨트 미착용(strictFunctionTypes) 등을 모두 감점합니다.\n\n" +
+        "strict: true는 8가지 검사 항목을 한번에 활성화합니다. 신호 위반(strictNullChecks), 차선 변경 시 깜빡이 미사용(noImplicitAny), 안전벨트 미착용(strictFunctionTypes) 등을 모두 감점합니다.\n\n" +
         "기존에 면허 없이 운전하던 사람(JS 프로젝트)에게 갑자기 모든 규칙을 적용하면 혼란이 생깁니다. 먼저 도로 위에 올라서게 하고(allowJs), 기본 규칙부터 가르친 뒤(checkJs), 마지막에 전체 시험을 보는(strict) 점진적 도입이 현실적입니다.",
     },
     {
@@ -26,7 +26,7 @@ const chapter: Chapter = {
       content:
         "strict 모드를 둘러싼 실무 문제들은 크게 세 가지입니다.\n\n" +
         "**1. strict: true가 뭘 하는지 정확히 모른다**\n" +
-        "strict는 단일 옵션이 아니라 7개 플래그의 묶음입니다. 어떤 팀원은 '에러가 너무 많아서' strict를 끄자고 하는데, 실제로는 strictNullChecks 하나만 끄면 되는 경우가 대부분입니다. 정확한 이해 없이 전체를 끄면 타입 안전성이 급격히 떨어집니다.\n\n" +
+        "strict는 단일 옵션이 아니라 8개 플래그의 묶음입니다. 어떤 팀원은 '에러가 너무 많아서' strict를 끄자고 하는데, 실제로는 strictNullChecks 하나만 끄면 되는 경우가 대부분입니다. 정확한 이해 없이 전체를 끄면 타입 안전성이 급격히 떨어집니다.\n\n" +
         "**2. 기존 JS 프로젝트 마이그레이션의 벽**\n" +
         "수천 줄의 JavaScript 프로젝트에 strict: true를 한 번에 적용하면 수백 개의 에러가 쏟아집니다. 이 때문에 '우리 프로젝트엔 TypeScript 도입이 불가능하다'고 포기하는 팀이 많습니다.\n\n" +
         "**3. @ts-ignore 남용**\n" +
@@ -36,14 +36,15 @@ const chapter: Chapter = {
       type: "solution",
       title: "해결 방법",
       content:
-        "### strict가 활성화하는 7가지 플래그\n\n" +
+        "### strict가 활성화하는 8가지 플래그\n\n" +
         "**1. strictNullChecks** — null과 undefined를 별도 타입으로 취급. 가장 중요한 플래그입니다.\n" +
         "**2. noImplicitAny** — 타입을 추론할 수 없을 때 암묵적 any를 금지.\n" +
         "**3. strictFunctionTypes** — 함수 매개변수 타입을 반공변(contravariant)으로 검사.\n" +
         "**4. strictBindCallApply** — bind, call, apply의 매개변수를 정확히 검사.\n" +
         "**5. strictPropertyInitialization** — 클래스 프로퍼티의 초기화를 강제.\n" +
         "**6. noImplicitThis** — this의 타입이 any가 되는 것을 금지.\n" +
-        "**7. alwaysStrict** — 모든 파일에 'use strict'를 추가.\n\n" +
+        "**7. alwaysStrict** — 모든 파일에 'use strict'를 추가.\n" +
+        "**8. useUnknownInCatchVariables** — catch 매개변수를 unknown으로 취급 (TS 4.4+).\n\n" +
         "### 점진적 도입 전략\n" +
         "**Phase 1:** `allowJs: true`로 .js 파일을 TypeScript 프로젝트에 포함.\n" +
         "**Phase 2:** `checkJs: true`로 .js 파일도 타입 검사 시작.\n" +
@@ -97,12 +98,21 @@ const chapter: Chapter = {
           "}\n" +
           "\n" +
           "// ===== strictFunctionTypes =====\n" +
-          "type Handler = (event: MouseEvent) => void;\n" +
+          "type Handler = (event: Event) => void;\n" +
           "\n" +
           "// strictFunctionTypes: true\n" +
-          "const handler: Handler = (e: Event) => {};\n" +
-          "// ❌ Event는 MouseEvent의 상위 타입이므로 에러\n" +
-          "// MouseEvent에만 있는 clientX 등에 접근하면 위험",
+          "// 매개변수는 반공변(contravariant)으로 검사됩니다.\n" +
+          "const safeHandler: Handler = (e: MouseEvent) => {\n" +
+          "  console.log(e.clientX); // MouseEvent에만 있는 프로퍼티 사용\n" +
+          "};\n" +
+          "// ❌ 에러! Handler는 모든 Event를 받아야 하는데,\n" +
+          "// safeHandler는 MouseEvent만 처리할 수 있음.\n" +
+          "// 일반 Event가 들어오면 clientX가 없어 위험!\n" +
+          "\n" +
+          "// ✅ 반대 방향은 안전 (넓은 매개변수 → 좁은 매개변수 타입에 할당)\n" +
+          "type MouseHandler = (event: MouseEvent) => void;\n" +
+          "const generalHandler: MouseHandler = (e: Event) => {};\n" +
+          "// OK: Event를 받는 함수는 MouseEvent도 처리 가능",
         description:
           "strictNullChecks는 null/undefined 에러를, noImplicitAny는 암묵적 any를, strictFunctionTypes는 함수 매개변수의 타입 안전성을 보장합니다.",
       },
@@ -158,6 +168,7 @@ const chapter: Chapter = {
           "// 5. strictPropertyInitialization: true\n" +
           "// 6. noImplicitThis: true\n" +
           "// 7. alwaysStrict: true\n" +
+          "// 8. useUnknownInCatchVariables: true → catch 안전\n" +
           "// → 모두 활성화 후 strict: true로 통합!",
         description:
           "allowJs → checkJs → strict 순서로 점진 도입하고, @ts-expect-error로 에러를 관리합니다.",
@@ -175,8 +186,9 @@ const chapter: Chapter = {
         "| strictBindCallApply | bind/call/apply 타입 검사 | ★★★ |\n" +
         "| strictPropertyInitialization | 클래스 초기화 강제 | ★★★ |\n" +
         "| noImplicitThis | this 타입 강제 | ★★ |\n" +
-        "| alwaysStrict | 'use strict' 추가 | ★★ |\n\n" +
-        "**핵심:** strict: true는 7가지 검사를 한번에 활성화합니다. 특히 strictNullChecks는 null/undefined 런타임 에러를 사전에 잡아주므로 반드시 켜야 합니다. 기존 프로젝트에는 allowJs → checkJs → strict 순서로 점진 도입하고, 에러 억제가 필요하면 @ts-expect-error를 사용하세요.\n\n" +
+        "| alwaysStrict | 'use strict' 추가 | ★★ |\n" +
+        "| useUnknownInCatchVariables | catch 매개변수 unknown 처리 | ★★★ |\n\n" +
+        "**핵심:** strict: true는 8가지 검사를 한번에 활성화합니다. 특히 strictNullChecks는 null/undefined 런타임 에러를 사전에 잡아주므로 반드시 켜야 합니다. 기존 프로젝트에는 allowJs → checkJs → strict 순서로 점진 도입하고, 에러 억제가 필요하면 @ts-expect-error를 사용하세요.\n\n" +
         "**다음 챕터 미리보기:** TypeScript에서 에러를 타입 안전하게 다루는 패턴을 배웁니다. try/catch의 unknown 문제, Result<T, E> 패턴, 커스텀 에러 클래스 등을 실전에 적용합니다.",
     },
     {
@@ -186,9 +198,9 @@ const chapter: Chapter = {
     },
   ],
   keyTakeaway:
-    "strict: true는 7가지 검사를 한번에 활성화한다. 특히 strictNullChecks는 null/undefined 관련 런타임 에러를 사전에 잡아주므로 반드시 켜야 한다. 기존 프로젝트에는 allowJs부터 시작해 점진적으로 도입하라.",
+    "strict: true는 8가지 검사를 한번에 활성화한다. 특히 strictNullChecks는 null/undefined 관련 런타임 에러를 사전에 잡아주므로 반드시 켜야 한다. 기존 프로젝트에는 allowJs부터 시작해 점진적으로 도입하라.",
   checklist: [
-    "strict: true가 활성화하는 7가지 플래그를 나열할 수 있다",
+    "strict: true가 활성화하는 8가지 플래그를 나열할 수 있다",
     "strictNullChecks가 가장 중요한 이유를 설명할 수 있다",
     "allowJs → checkJs → strict 순서의 점진적 도입 전략을 이해한다",
     "@ts-ignore와 @ts-expect-error의 차이를 설명할 수 있다",
@@ -206,7 +218,7 @@ const chapter: Chapter = {
       ],
       correctIndex: 2,
       explanation:
-        "noUnusedLocals는 strict에 포함되지 않는 별도의 옵션입니다. strict는 strictNullChecks, noImplicitAny, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, alwaysStrict 7가지를 활성화합니다.",
+        "noUnusedLocals는 strict에 포함되지 않는 별도의 옵션입니다. strict는 strictNullChecks, noImplicitAny, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, alwaysStrict, useUnknownInCatchVariables 8가지를 활성화합니다.",
     },
     {
       id: "q2",
@@ -260,7 +272,7 @@ const chapter: Chapter = {
       ],
       correctIndex: 1,
       explanation:
-        "strictFunctionTypes는 함수 매개변수 타입을 반공변(contravariant)으로 검사합니다. 즉, 더 넓은 타입의 매개변수를 받는 함수를 더 좁은 타입을 기대하는 곳에 할당할 수 없습니다. 이는 타입 안전성을 보장합니다.",
+        "strictFunctionTypes는 함수 매개변수 타입을 반공변(contravariant)으로 검사합니다. 즉, 더 좁은 타입의 매개변수를 받는 함수(예: MouseEvent만 처리)를 더 넓은 타입을 기대하는 곳(예: 모든 Event 처리)에 할당할 수 없습니다. 이는 타입 안전성을 보장합니다.",
     },
   ],
 };

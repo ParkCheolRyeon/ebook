@@ -35,7 +35,7 @@ const chapter: Chapter = {
         "### React 18 자동 배칭 (Automatic Batching)\n" +
         "React 18부터 `createRoot`를 사용하면 **모든 상태 업데이트가 자동으로 배칭**됩니다. setTimeout, Promise.then, 네이티브 이벤트 핸들러 안에서도 여러 setState가 하나의 렌더링으로 합쳐집니다.\n\n" +
         "### 배칭의 원리\n" +
-        "React는 상태 업데이트를 큐에 쌓고, 현재 실행 컨텍스트가 끝날 때 한꺼번에 처리합니다. 마이크로태스크 큐를 활용하여 동기 코드 블록이 끝나면 일괄 처리합니다.\n\n" +
+        "React는 상태 업데이트를 큐에 쌓고, React 자체 스케줄러(Scheduler)를 통해 한꺼번에 처리합니다. 이벤트 핸들러, setTimeout, Promise 등 어떤 컨텍스트에서든 업데이트가 발생하면 스케줄러가 렌더링을 예약하고 일괄 처리합니다.\n\n" +
         "### flushSync로 배칭 해제\n" +
         "드물지만 즉시 DOM에 반영해야 하는 경우 `flushSync`를 사용해 배칭을 해제할 수 있습니다. 예: DOM 측정이 중간에 필요한 경우.\n\n" +
         "### 같은 상태의 연속 업데이트\n" +
@@ -62,8 +62,8 @@ const chapter: Chapter = {
           '  if (!isBatchingScheduled) {\n' +
           '    isBatchingScheduled = true;\n' +
           '\n' +
-          '    // 마이크로태스크로 예약 → 동기 코드가 모두 끝난 후 실행\n' +
-          '    queueMicrotask(() => {\n' +
+          '    // React Scheduler로 렌더링 예약 → 현재 실행 컨텍스트 종료 후 처리\n' +
+          '    scheduleCallback(NormalPriority, () => {\n' +
           '      processBatch();\n' +
           '      isBatchingScheduled = false;\n' +
           '    });\n' +
@@ -89,7 +89,7 @@ const chapter: Chapter = {
           '  // 한 번의 렌더링으로 처리\n' +
           '  scheduleRender(updatedFibers);\n' +
           '}\n',
-        description: "setState는 즉시 렌더링하지 않고 큐에 쌓으며, 마이크로태스크로 한 번에 처리합니다.",
+        description: "setState는 즉시 렌더링하지 않고 큐에 쌓으며, React Scheduler를 통해 한 번에 처리합니다.",
       },
     },
     {

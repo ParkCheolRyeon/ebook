@@ -100,10 +100,10 @@ const chapter: Chapter = {
           '// 4. Promise가 resolve되면 자식을 다시 렌더링\n' +
           '\n' +
           '// use()가 조건문에서 가능한 이유:\n' +
-          '// 기존 Hook은 호출 순서로 상태를 식별하지만,\n' +
-          '// use()는 전달받은 리소스 자체로 식별하므로\n' +
-          '// 호출 순서가 바뀌어도 문제 없음',
-        description: "use()는 Promise를 throw하여 Suspense와 연동하고, Context는 직접 읽습니다. 리소스 자체로 식별하므로 조건부 호출이 가능합니다.",
+          '// 기존 Hook(useState, useEffect 등)은 호출 순서에 의존하여 상태를 관리하지만,\n' +
+          '// use()는 내부 상태를 갖지 않는 특수 API로 Hook 호출 순서에 의존하지 않습니다.\n' +
+          '// 단순히 전달받은 리소스를 읽기만 하므로 조건문/반복문 안에서도 안전합니다.',
+        description: "use()는 Promise를 throw하여 Suspense와 연동하고, Context는 직접 읽습니다. Hook 호출 순서에 의존하지 않는 특수 API이므로 조건부 호출이 가능합니다.",
       },
     },
     {

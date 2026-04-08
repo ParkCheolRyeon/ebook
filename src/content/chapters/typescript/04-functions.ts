@@ -44,7 +44,7 @@ const chapter: Chapter = {
         "### 매개변수와 반환값 타입\n" +
         "매개변수에는 타입을 명시하고, 반환값은 대부분 추론에 맡깁니다. 다만 공개 API나 복잡한 함수에서는 반환 타입 명시가 유용합니다.\n\n" +
         "### 선택적 매개변수 (?)\n" +
-        "`?`를 붙이면 해당 매개변수를 생략할 수 있습니다. 선택적 매개변수는 `T | undefined` 유니온과 같습니다. 반드시 필수 매개변수 뒤에 와야 합니다.\n\n" +
+        "`?`를 붙이면 해당 매개변수를 생략할 수 있습니다. 함수 본문에서의 타입은 `T | undefined`와 동일하지만, 호출 시그니처에서는 차이가 있습니다. `f(x?: string)`은 인자를 아예 생략할 수 있지만, `f(x: string | undefined)`는 반드시 `undefined`라도 명시적으로 전달해야 합니다. 선택적 매개변수는 반드시 필수 매개변수 뒤에 와야 합니다.\n\n" +
         "### 기본값 매개변수\n" +
         "기본값을 지정하면 타입이 자동 추론되며, 호출 시 생략할 수 있습니다. `?`와 달리 함수 내부에서 undefined 체크가 불필요합니다.\n\n" +
         "### 나머지 매개변수 (...args)\n" +
@@ -188,7 +188,7 @@ const chapter: Chapter = {
       ],
       correctIndex: 1,
       explanation:
-        "선택적 매개변수(?)는 해당 타입과 undefined의 유니온과 동일합니다. greeting?: string은 greeting: string | undefined와 같은 의미입니다.",
+        "선택적 매개변수(?)는 함수 본문에서 해당 타입과 undefined의 유니온과 동일하게 동작합니다. 다만 호출 시에는 차이가 있습니다. greeting?: string은 인자 생략이 가능하지만, greeting: string | undefined는 undefined라도 명시적으로 전달해야 합니다.",
     },
     {
       id: "q2",

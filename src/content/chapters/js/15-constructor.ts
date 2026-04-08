@@ -50,12 +50,11 @@ const chapter: Chapter = {
         "- 파스칼 케이스(대문자 시작)로 명명: `function User() {}`\n" +
         "- 반드시 `new`와 함께 호출\n" +
         "- 명시적 `return` 없이 `this`가 자동 반환\n\n" +
-        "### new 연산자 5단계 동작\n" +
-        "1. **빈 객체 생성** — `Object.create(Constructor.prototype)`\n" +
+        "### new 연산자 4단계 동작\n" +
+        "1. **빈 객체 생성 + 프로토타입 연결** — `Object.create(Constructor.prototype)`으로 빈 객체를 만들고 `[[Prototype]]`을 설정\n" +
         "2. **this 바인딩** — 새 객체를 생성자 함수의 this로 설정\n" +
         "3. **함수 실행** — 생성자 코드 실행, this에 프로퍼티 추가\n" +
-        "4. **반환값 처리** — 생성자가 객체를 명시적으로 반환하면 그것을 반환, 아니면 this 반환\n" +
-        "5. **프로토타입 연결** — 인스턴스의 `[[Prototype]]`이 `Constructor.prototype`을 가리킴\n\n" +
+        "4. **반환값 처리** — 생성자가 객체를 명시적으로 반환하면 그것을 반환, 아니면 this 반환\n\n" +
         "### new.target\n" +
         "생성자 함수 내부에서 `new.target`은 new로 호출되면 함수 자신을, " +
         "일반 호출이면 `undefined`를 반환합니다. 이를 이용해 new 없는 호출을 방어할 수 있습니다.\n\n" +

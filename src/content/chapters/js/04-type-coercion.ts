@@ -54,7 +54,7 @@ const chapter: Chapter = {
         "- `String(null)` → `'null'`, `String(undefined)` → `'undefined'`\n" +
         "- `null.toString()` → TypeError (null/undefined에 직접 호출 불가)\n\n" +
         "**불리언으로 변환:** `Boolean(value)`, 부정 연산자 `!!value`.\n\n" +
-        "### Falsy 값 (7가지)\n\n" +
+        "### Falsy 값 (8가지)\n\n" +
         "`false`, `0`, `-0`, `0n`(BigInt 0), `''`(빈 문자열), `null`, `undefined`, `NaN`.\n\n" +
         "이 8가지를 제외한 모든 값은 **truthy**입니다. `[]`, `{}`, `'0'`, `'false'`는 모두 truthy입니다.\n\n" +
         "### 추상 동등 알고리즘 (== 의 내부 규칙)\n\n" +
@@ -112,7 +112,8 @@ const chapter: Chapter = {
           '// 결과 예시:\n' +
           '// false == 0 → Number(false)=0 → 0 == 0 → true\n' +
           '// "" == false → Number(false)=0, Number("")=0 → 0 == 0 → true\n' +
-          '// [] == false → Number(false)=0, [].valueOf()="", Number("")=0 → true',
+          '// [] == false → Number(false)=0, ToPrimitive([]):\n' +
+          '//   [].valueOf()=[] (배열 자신), [].toString()="" → Number("")=0 → true',
         description: "== 알고리즘은 재귀적으로 동작하며 여러 단계의 변환을 거칩니다. 이 복잡성이 === 사용을 권장하는 이유입니다.",
       },
     },

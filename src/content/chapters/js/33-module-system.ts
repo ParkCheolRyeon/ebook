@@ -105,7 +105,9 @@ const chapter: Chapter = {
           "console.log(count); // 0\n" +
           "increment();\n" +
           "console.log(count); // 1 ← 라이브 바인딩! (CJS는 0)\n" +
-          "// CJS였다면: const { count } = require('./counter') → 값 복사 → 항상 0\n" +
+          "// CJS에서 구조분해: const { count } = require('./counter') → 값 복사 → 항상 0\n" +
+          "// 단, CJS에서 모듈 객체 참조: const counter = require('./counter')\n" +
+          "//   → counter.count는 exports 객체의 프로퍼티를 참조하므로 변경이 반영됨\n" +
           "\n" +
           "// === 동적 import — 코드 스플리팅 ===\n" +
           "// routes.js\n" +
@@ -192,7 +194,7 @@ const chapter: Chapter = {
           "  const { applyDarkTheme } = await import('./dark-theme.mjs');\n" +
           "  applyDarkTheme();\n" +
           "}",
-        description: "require()는 모듈 객체의 복사본을 반환하지만 ESM의 import는 라이브 바인딩을 생성합니다. 이 차이가 순환 참조 처리 방식과 트리 쉐이킹 가능 여부를 결정합니다.",
+        description: "require()는 exports 객체의 참조를 반환합니다. 구조분해(`const { count } = require(...)`)하면 원시값은 복사되지만, 모듈 객체를 통해(`counter.count`) 접근하면 변경이 반영됩니다. ESM의 import는 라이브 바인딩으로 항상 최신 값을 참조합니다.",
       },
     },
     {

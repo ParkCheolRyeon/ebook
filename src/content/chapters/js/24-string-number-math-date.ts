@@ -81,11 +81,16 @@ const chapter: Chapter = {
           "// === 부동소수점 문제 ===\n" +
           "console.log(0.1 + 0.2);          // 0.30000000000000004\n" +
           "console.log(0.1 + 0.2 === 0.3);  // false\n\n" +
-          "// 해결책 1: Number.EPSILON 사용\n" +
+          "// 해결책 1: Number.EPSILON 사용 (0에 가까운 수에서만 신뢰 가능)\n" +
           "function isEqual(a, b) {\n" +
           "  return Math.abs(a - b) < Number.EPSILON;\n" +
           "}\n" +
           "console.log(isEqual(0.1 + 0.2, 0.3)); // true\n\n" +
+          "// 주의: 큰 수에서는 오차가 EPSILON보다 커질 수 있음\n" +
+          "// 더 견고한 방법: 상대적 비교\n" +
+          "function isEqualRobust(a, b) {\n" +
+          "  return Math.abs(a - b) <= Number.EPSILON * Math.max(Math.abs(a), Math.abs(b));\n" +
+          "}\n\n" +
           "// 해결책 2: 정수로 변환 후 계산\n" +
           "const add = (a, b) => (Math.round(a * 100) + Math.round(b * 100)) / 100;\n" +
           "console.log(add(0.1, 0.2)); // 0.3\n\n" +
@@ -104,7 +109,7 @@ const chapter: Chapter = {
           "// 3. ISO 형식으로 날짜 출력\n" +
           "console.log(new Date().toISOString()); // '2024-03-15T09:30:00.000Z'",
         description:
-          "부동소수점 비교 시 항상 Number.EPSILON을 활용하고, Date의 month는 0-indexed임을 기억하세요.",
+          "부동소수점 비교 시 Number.EPSILON을 활용하되, 큰 수에서는 상대적 비교(relative comparison)가 더 안전합니다. Date의 month는 0-indexed임을 기억하세요.",
       },
     },
     {

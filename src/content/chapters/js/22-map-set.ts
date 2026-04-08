@@ -41,7 +41,8 @@ const chapter: Chapter = {
         "### Set\n" +
         "- 중복 없는 고유 값의 컬렉션입니다.\n" +
         "- 삽입 순서를 유지합니다.\n" +
-        "- `add()`, `has()`, `delete()`, `clear()`, `forEach()` 메서드 제공.\n\n" +
+        "- `add()`, `has()`, `delete()`, `clear()`, `forEach()` 메서드 제공.\n" +
+        "- ES2025부터 집합 연산 메서드가 표준으로 추가됨: `intersection()`, `union()`, `difference()`, `symmetricDifference()`, `isSubsetOf()`, `isSupersetOf()`, `isDisjointFrom()`.\n\n" +
         "### Map vs 객체 선택 기준\n" +
         "| 상황 | 권장 |\n" +
         "|------|------|\n" +
@@ -122,17 +123,21 @@ const chapter: Chapter = {
           "// Map을 정렬된 배열로 변환\n" +
           "const sorted = [...freq.entries()].sort((a, b) => b[1] - a[1]);\n" +
           "console.log(sorted); // [['apple',3], ['banana',2], ['cherry',1]]\n\n" +
-          "// 3. Set으로 교집합, 합집합, 차집합\n" +
+          "// 3. Set 집합 연산 (ES2025 표준 메서드)\n" +
           "const setA = new Set([1, 2, 3, 4]);\n" +
           "const setB = new Set([3, 4, 5, 6]);\n\n" +
-          "const union        = new Set([...setA, ...setB]);               // 합집합\n" +
-          "const intersection = new Set([...setA].filter(x => setB.has(x))); // 교집합\n" +
-          "const difference   = new Set([...setA].filter(x => !setB.has(x))); // 차집합\n\n" +
+          "const union        = setA.union(setB);              // Set {1,2,3,4,5,6}\n" +
+          "const intersection = setA.intersection(setB);       // Set {3,4}\n" +
+          "const difference   = setA.difference(setB);         // Set {1,2}\n" +
+          "const symDiff      = setA.symmetricDifference(setB); // Set {1,2,5,6}\n\n" +
           "console.log([...union]);        // [1,2,3,4,5,6]\n" +
           "console.log([...intersection]); // [3,4]\n" +
-          "console.log([...difference]);   // [1,2]",
+          "console.log([...difference]);   // [1,2]\n" +
+          "console.log([...symDiff]);      // [1,2,5,6]\n\n" +
+          "// 레거시 방식 (스프레드 + filter)\n" +
+          "// const intersection = new Set([...setA].filter(x => setB.has(x)));",
         description:
-          "Set의 스프레드와 filter를 조합하면 집합 연산을 간결하게 구현할 수 있습니다.",
+          "ES2025부터 Set에 집합 연산 메서드가 표준으로 추가되었습니다. 레거시 환경에서는 스프레드와 filter를 조합해 구현할 수 있습니다.",
       },
     },
     {
@@ -165,7 +170,7 @@ const chapter: Chapter = {
     "Set으로 배열의 중복을 제거하는 방법을 안다",
     "WeakMap/WeakSet이 가비지 컬렉션에 영향을 주지 않는 이유를 설명할 수 있다",
     "Map과 Set의 주요 메서드(get/set/has/delete/add)를 사용할 수 있다",
-    "Set의 스프레드로 합집합, 교집합, 차집합을 구현할 수 있다",
+    "Set의 집합 연산 메서드(intersection, union, difference 등)를 사용할 수 있다",
     "WeakMap을 이용한 프라이빗 데이터 패턴을 이해한다",
   ],
   quiz: [
@@ -208,13 +213,13 @@ const chapter: Chapter = {
       question: "두 Set의 교집합을 구하는 올바른 코드는?",
       choices: [
         "new Set([...a, ...b])",
-        "new Set([...a].filter(x => b.has(x)))",
+        "a.filter(x => b.has(x))",
         "new Set([...a].filter(x => !b.has(x)))",
         "a.intersection(b)",
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
-        "교집합은 a에 있으면서 b에도 있는 요소입니다. a를 배열로 전개한 후 b.has(x)로 필터링하고 새 Set으로 만들면 됩니다.",
+        "ES2025부터 Set.prototype.intersection()이 표준 메서드로 추가되었습니다. a.intersection(b)는 a와 b 모두에 포함된 요소로 구성된 새 Set을 반환합니다. 레거시 환경에서는 new Set([...a].filter(x => b.has(x)))를 사용할 수 있습니다.",
     },
     {
       id: "q5",

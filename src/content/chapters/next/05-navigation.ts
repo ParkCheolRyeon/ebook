@@ -69,7 +69,8 @@ const chapter: Chapter = {
         "- `router.refresh()` — 현재 라우트 서버에서 새로고침\n\n" +
         "### usePathname, useSearchParams — URL 상태 읽기\n" +
         "- `usePathname()` — 현재 경로 (예: `/blog/my-post`)\n" +
-        "- `useSearchParams()` — 쿼리 파라미터 (예: `?page=2&sort=date`)\n\n" +
+        "- `useSearchParams()` — 쿼리 파라미터 (예: `?page=2&sort=date`)\n" +
+        "- **주의:** `useSearchParams()`를 사용하는 컴포넌트는 반드시 `<Suspense>` 바운더리로 감싸야 합니다. 그렇지 않으면 해당 페이지 전체가 클라이언트 사이드 렌더링으로 전환되어 SSR/SSG의 이점을 잃게 됩니다.\n\n" +
         "### redirect() — 서버 사이드 리다이렉트\n" +
         "- `next/navigation`에서 import\n" +
         "- 서버 컴포넌트, Server Action, Route Handler에서 사용\n" +

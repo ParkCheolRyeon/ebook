@@ -26,9 +26,20 @@ const midQuizLoaders: Record<Subject, Record<string, MidQuizLoader>> = {
     "mid-03": () => import("./next/mid/mid-03"),
     "mid-04": () => import("./next/mid/mid-04"),
   },
-  cs: {},
-  network: {},
-  infra: {},
+  cs: {
+    "mid-01": () => import("./cs/mid/mid-01"),
+    "mid-02": () => import("./cs/mid/mid-02"),
+    "mid-03": () => import("./cs/mid/mid-03"),
+  },
+  network: {
+    "mid-01": () => import("./network/mid/mid-01"),
+    "mid-02": () => import("./network/mid/mid-02"),
+    "mid-03": () => import("./network/mid/mid-03"),
+  },
+  infra: {
+    "mid-01": () => import("./infra/mid/mid-01"),
+    "mid-02": () => import("./infra/mid/mid-02"),
+  },
   typescript: {
     "mid-01": () => import("./typescript/mid/mid-01"),
     "mid-02": () => import("./typescript/mid/mid-02"),
@@ -41,9 +52,9 @@ const finalExamLoaders: Record<Subject, FinalExamLoader | null> = {
   js: () => import("./js/final"),
   react: () => import("./react/final"),
   next: () => import("./next/final"),
-  cs: null,
-  network: null,
-  infra: null,
+  cs: () => import("./cs/final"),
+  network: () => import("./network/final"),
+  infra: () => import("./infra/final"),
   typescript: () => import("./typescript/final"),
 };
 

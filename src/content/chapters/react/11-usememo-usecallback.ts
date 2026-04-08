@@ -48,7 +48,7 @@ const chapter: Chapter = {
         "React Compiler(React Forget)가 안정화되면 컴파일 타임에 자동으로 메모이제이션을 적용합니다. 이는 수동 useMemo/useCallback의 필요성을 크게 줄입니다.\n" +
         "- Compiler는 값이 변하지 않았음을 정적 분석으로 판단\n" +
         "- 개발자가 의존성 배열을 직접 관리할 필요 없음\n" +
-        "- 현재(React 19) 실험적 기능이며 점진적 도입 중",
+        "- 현재 Beta/RC 단계이며 Meta 내부에서 프로덕션에 사용 중, 점진적으로 도입 확대 중",
     },
     {
       type: "pseudocode",

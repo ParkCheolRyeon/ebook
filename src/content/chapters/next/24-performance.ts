@@ -149,33 +149,39 @@ const chapter: Chapter = {
         code:
           '// === components/WebVitals.tsx — Core Web Vitals 측정 ===\n' +
           '"use client";\n\n' +
-          'import { useReportWebVitals } from "next/web-vitals";\n\n' +
+          '// [deprecated] useReportWebVitals는 Next.js 15에서 deprecated되었습니다.\n' +
+          '// 대신 web-vitals 라이브러리 직접 사용 또는 @vercel/speed-insights를 권장합니다.\n' +
+          '// import { useReportWebVitals } from "next/web-vitals"; // deprecated\n\n' +
+          '// web-vitals 라이브러리 직접 사용 방식 (npm install web-vitals)\n' +
+          'import { useEffect } from "react";\n' +
+          'import { onCLS, onINP, onLCP } from "web-vitals";\n\n' +
           'export function WebVitals() {\n' +
-          '  useReportWebVitals((metric) => {\n' +
-          '    // 측정된 지표를 분석 서비스로 전송\n' +
-          '    console.log(metric.name, metric.value);\n\n' +
-          '    switch (metric.name) {\n' +
-          '      case "LCP": // Largest Contentful Paint — 2.5초 이하 권장\n' +
-          '        if (metric.value > 2500) {\n' +
-          '          console.warn("LCP가 느립니다:", metric.value, "ms");\n' +
-          '        }\n' +
-          '        break;\n' +
-          '      case "INP": // Interaction to Next Paint — 200ms 이하 권장\n' +
-          '        if (metric.value > 200) {\n' +
-          '          console.warn("INP가 느립니다:", metric.value, "ms");\n' +
-          '        }\n' +
-          '        break;\n' +
-          '      case "CLS": // Cumulative Layout Shift — 0.1 이하 권장\n' +
-          '        if (metric.value > 0.1) {\n' +
-          '          console.warn("CLS가 높습니다:", metric.value);\n' +
-          '        }\n' +
-          '        break;\n' +
-          '    }\n' +
-          '  });\n\n' +
+          '  useEffect(() => {\n' +
+          '    onLCP((metric) => {\n' +
+          '      // LCP — 2.5초 이하 권장\n' +
+          '      if (metric.value > 2500) {\n' +
+          '        console.warn("LCP가 느립니다:", metric.value, "ms");\n' +
+          '      }\n' +
+          '    });\n' +
+          '    onINP((metric) => {\n' +
+          '      // INP — 200ms 이하 권장\n' +
+          '      if (metric.value > 200) {\n' +
+          '        console.warn("INP가 느립니다:", metric.value, "ms");\n' +
+          '      }\n' +
+          '    });\n' +
+          '    onCLS((metric) => {\n' +
+          '      // CLS — 0.1 이하 권장\n' +
+          '      if (metric.value > 0.1) {\n' +
+          '        console.warn("CLS가 높습니다:", metric.value);\n' +
+          '      }\n' +
+          '    });\n' +
+          '  }, []);\n\n' +
           '  return null;\n' +
           '}\n\n' +
-          '// === app/layout.tsx — WebVitals 컴포넌트 배치 ===\n' +
-          'import { WebVitals } from "@/components/WebVitals";\n\n' +
+          '// === app/layout.tsx — @vercel/speed-insights 사용 (Vercel 배포 시 권장) ===\n' +
+          '// npm install @vercel/speed-insights\n' +
+          'import { SpeedInsights } from "@vercel/speed-insights/next";\n' +
+          '// 또는 자체 호스팅 시: import { WebVitals } from "@/components/WebVitals";\n\n' +
           'export default function RootLayout({\n' +
           '  children,\n' +
           '}: {\n' +
@@ -184,8 +190,8 @@ const chapter: Chapter = {
           '  return (\n' +
           '    <html lang="ko">\n' +
           '      <body>\n' +
-          '        <WebVitals />\n' +
           '        {children}\n' +
+          '        <SpeedInsights />\n' +
           '      </body>\n' +
           '    </html>\n' +
           '  );\n' +
@@ -214,7 +220,7 @@ const chapter: Chapter = {
           '  );\n' +
           '}',
         description:
-          "useReportWebVitals로 Core Web Vitals를 실시간 측정하고, Server Components + dynamic import 패턴으로 번들을 최소화합니다. LCP 이미지에 priority를 붙이고 인터랙션 컴포넌트만 클라이언트로 분리합니다.",
+          "web-vitals 라이브러리 또는 @vercel/speed-insights로 Core Web Vitals를 측정하고, Server Components + dynamic import 패턴으로 번들을 최소화합니다. LCP 이미지에 priority를 붙이고 인터랙션 컴포넌트만 클라이언트로 분리합니다.",
       },
     },
     {

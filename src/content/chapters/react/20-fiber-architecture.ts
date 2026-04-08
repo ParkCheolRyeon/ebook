@@ -39,7 +39,7 @@ const chapter: Chapter = {
         "### 작업 단위(Unit of Work)\n" +
         "하나의 Fiber 노드를 처리하는 것이 하나의 작업 단위입니다. 작업 단위를 완료하면 브라우저에 제어권을 돌려줄 수 있는 **양보 지점(yield point)**이 됩니다.\n\n" +
         "### 시간 분할(Time Slicing)\n" +
-        "`requestIdleCallback`(또는 React의 자체 스케줄러)을 사용해 프레임 사이의 유휴 시간에 작업을 수행합니다. 5ms 단위로 잘라서 브라우저가 끊기지 않게 합니다.\n\n" +
+        "React는 자체 스케줄러(`scheduler` 패키지)를 사용해 `MessageChannel` 기반으로 작업을 스케줄링합니다. `requestIdleCallback`은 브라우저 간 지원이 불일치하고 호출 타이밍이 예측 불가능하여 채택되지 않았습니다. 약 5ms 단위로 작업을 잘라서 브라우저가 끊기지 않게 합니다.\n\n" +
         "### 우선순위 레인(Lanes)\n" +
         "React 18부터 비트마스크 기반 Lane 시스템으로 업데이트 우선순위를 관리합니다. `SyncLane`(사용자 입력), `DefaultLane`(일반 업데이트), `IdleLane`(유휴 시 처리) 등이 있습니다.\n\n" +
         "### 이중 버퍼링\n" +
@@ -69,20 +69,20 @@ const chapter: Chapter = {
           '// 작업 루프 (단순화)\n' +
           'let workInProgress: FiberNode | null = null;\n' +
           '\n' +
-          'function workLoop(deadline: { timeRemaining: () => number }) {\n' +
+          'function workLoop() {\n' +
           '  let shouldYield = false;\n' +
           '\n' +
           '  while (workInProgress !== null && !shouldYield) {\n' +
           '    // 1. 현재 Fiber 처리 (하나의 작업 단위)\n' +
           '    workInProgress = performUnitOfWork(workInProgress);\n' +
           '\n' +
-          '    // 2. 브라우저에 양보해야 하는지 확인\n' +
-          '    shouldYield = deadline.timeRemaining() < 5; // 5ms 미만이면 양보\n' +
+          '    // 2. 브라우저에 양보해야 하는지 확인 (Scheduler가 경과 시간 추적)\n' +
+          '    shouldYield = shouldYieldToHost(); // 약 5ms 경과 시 true\n' +
           '  }\n' +
           '\n' +
           '  if (workInProgress !== null) {\n' +
-          '    // 아직 작업이 남아있으면 다음 유휴 시간에 계속\n' +
-          '    requestIdleCallback(workLoop);\n' +
+          '    // 아직 작업이 남아있으면 MessageChannel로 다음 태스크 예약\n' +
+          '    scheduleCallback(workLoop);\n' +
           '  } else {\n' +
           '    // 모든 작업 완료 → 커밋 단계로\n' +
           '    commitRoot();\n' +

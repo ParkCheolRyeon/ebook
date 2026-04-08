@@ -59,14 +59,14 @@ const chapter: Chapter = {
           '// === React Compiler: 자동 메모이제이션 ===\n' +
           '// 기존: 개발자가 수동으로 최적화\n' +
           'const MemoizedList = memo(function ProductList({ products }: Props) {\n' +
-          '  const sorted = useMemo(() => products.sort(byPrice), [products]);\n' +
+          '  const sorted = useMemo(() => [...products].sort(byPrice), [products]);\n' +
           '  const handleClick = useCallback((id: string) => select(id), []);\n' +
           '  return sorted.map(p => <Item key={p.id} onClick={handleClick} />);\n' +
           '});\n' +
           '\n' +
           '// React Compiler 시대: 그냥 작성\n' +
           'function ProductList({ products }: Props) {\n' +
-          '  const sorted = products.sort(byPrice);\n' +
+          '  const sorted = [...products].sort(byPrice);\n' +
           '  const handleClick = (id: string) => select(id);\n' +
           '  return sorted.map(p => <Item key={p.id} onClick={handleClick} />);\n' +
           '}\n' +

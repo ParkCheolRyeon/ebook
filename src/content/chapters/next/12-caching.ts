@@ -48,7 +48,7 @@ const chapter: Chapter = {
         "- **대상**: fetch GET 결과\n" +
         "- **지속**: 무기한 (명시적 무효화 전까지)\n" +
         "- **무효화**: `revalidateTag()`, `revalidatePath()`, `{ next: { revalidate: N } }`\n" +
-        "- fetch의 cache 옵션: `auto`(기본값) — 개발 중엔 매번 새로 요청, `next build` 시 정적 프리렌더링. Request-time API(cookies, headers 등) 감지 시 매번 요청. `no-store` — 항상 새로 요청. `force-cache` — 서버 캐시에서 매칭 후 반환, 없으면 fetch 후 캐시 저장.\n\n" +
+        "- fetch의 cache 옵션: `no-store`(기본값, Next.js 15+) — 매 요청마다 새로 데이터를 가져옴. Next.js 14까지는 `force-cache`가 기본값이었으나, **Next.js 15에서 `no-store`로 변경**되어 명시적으로 캐싱을 설정해야 한다. `force-cache` — 서버 캐시에서 매칭 후 반환, 없으면 fetch 후 캐시 저장. `{ next: { revalidate: N } }` — 시간 기반 재검증으로 캐싱 활성화.\n\n" +
         "### 3. Full Route Cache\n" +
         "- **범위**: 서버 측, 배포 간 지속\n" +
         "- **대상**: 정적 HTML + RSC Payload\n" +
@@ -58,13 +58,13 @@ const chapter: Chapter = {
         "### 4. Router Cache\n" +
         "- **범위**: 클라이언트 측, 세션 동안\n" +
         "- **대상**: 방문한 라우트의 RSC Payload\n" +
-        "- **지속**: 동적 페이지 30초, 정적 페이지 5분\n" +
+        "- **지속**: 동적 페이지 0초(Next.js 15 기본값, `staleTimes.dynamic` = 0), 정적 페이지 5분\n" +
         "- **무효화**: `router.refresh()`, Server Action의 `revalidatePath`/`revalidateTag`, `cookies.set`/`delete`\n" +
         "- 클라이언트에서 방문한 라우트의 **RSC Payload**를 메모리에 캐시한다. Link의 prefetch로 미리 가져온 데이터도 여기에 저장된다.\n\n" +
         "### cache() 함수\n" +
         "ORM 호출 등 fetch가 아닌 데이터 접근에 Request Memoization을 적용하려면 React의 `cache()` 함수로 감싸야 합니다.\n\n" +
-        "### Cache Components (Next.js 15+)\n" +
-        "next.config.ts에서 `cacheComponents: true`를 설정하면 Cache Components가 활성화된다. 이 모드에서는 GET Route Handler도 페이지와 동일한 프리렌더링 모델을 따르게 되어, 앱 전체에서 일관된 캐싱 동작을 보장한다.",
+        "### Cache Components (실험적)\n" +
+        "next.config.ts에서 `cacheComponents: true`를 설정하면 Cache Components가 활성화된다. **이 기능은 실험적(experimental)이며 아직 공식 안정 API가 아니다.** 이 모드에서는 GET Route Handler도 페이지와 동일한 프리렌더링 모델을 따르게 되어, 앱 전체에서 일관된 캐싱 동작을 보장한다. 프로덕션 사용 전에 공식 문서에서 최신 상태를 확인해야 한다.",
     },
     {
       type: "pseudocode",
@@ -88,8 +88,13 @@ const chapter: Chapter = {
           '\n' +
           '// === 2. Data Cache 제어 ===\n' +
           'async function getProducts() {\n' +
-          '  // 기본: 캐시됨 (Data Cache에 저장)\n' +
-          '  const cached = await fetch("https://api.example.com/products");\n' +
+          '  // 기본(Next.js 15+): 캐시되지 않음 (no-store가 기본값)\n' +
+          '  const uncached = await fetch("https://api.example.com/products");\n' +
+          '\n' +
+          '  // 명시적 캐싱: force-cache로 Data Cache에 저장\n' +
+          '  const cached = await fetch("https://api.example.com/products", {\n' +
+          '    cache: "force-cache",\n' +
+          '  });\n' +
           '\n' +
           '  // 시간 기반 재검증: 60초마다 백그라운드 갱신\n' +
           '  const timed = await fetch("https://api.example.com/products", {\n' +
@@ -205,7 +210,7 @@ const chapter: Chapter = {
         "| Request Memoization | 서버 (React 트리) | 같은 fetch 중복 | 요청 종료 시 | 자동 |\n" +
         "| Data Cache | 서버 | fetch GET 결과 | 무기한 | revalidateTag/Path |\n" +
         "| Full Route Cache | 서버 | 정적 HTML + RSC Payload | 무기한 | 재빌드/revalidate |\n" +
-        "| Router Cache | 클라이언트 | RSC Payload | 30초~5분 | refresh()/revalidate |\n\n" +
+        "| Router Cache | 클라이언트 | RSC Payload | 동적 0초(기본)~5분 | refresh()/revalidate |\n\n" +
         "**핵심:** Next.js는 4개의 캐시 레이어가 중첩되어 동작합니다. 각 레이어의 역할과 무효화 방법을 이해하는 것이 성능 튜닝의 핵심입니다.\n\n" +
         "**다음 챕터 미리보기:** ISR과 On-Demand Revalidation을 포함한 캐시 재검증(Revalidation) 전략을 심화 학습합니다.",
     },
@@ -289,11 +294,11 @@ const chapter: Chapter = {
         "동적 페이지 5분, 정적 페이지 30초",
         "모든 페이지 1시간",
         "동적 페이지 30초, 정적 페이지 5분",
-        "캐시되지 않음",
+        "동적 페이지 0초(캐시 안 함), 정적 페이지 5분",
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
-        "Router Cache는 동적 페이지를 30초, 정적 페이지를 5분 동안 클라이언트에 캐시합니다. 이 시간이 지나면 다음 네비게이션에서 서버에 새로 요청합니다.",
+        "Next.js 15부터 Router Cache의 staleTimes.dynamic 기본값이 0으로 변경되어 동적 페이지는 기본적으로 캐시되지 않습니다. 정적 페이지는 5분 동안 클라이언트에 캐시됩니다. next.config.ts의 staleTimes 설정으로 이 값을 변경할 수 있습니다.",
     },
   ],
 };

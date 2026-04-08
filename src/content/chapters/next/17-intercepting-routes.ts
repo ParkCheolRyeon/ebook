@@ -150,13 +150,17 @@ const chapter: Chapter = {
           '  return null; // 모달이 없을 때는 아무것도 표시하지 않음\n' +
           '}\n\n' +
           '// app/@modal/(.)photo/[id]/page.tsx (모달 버전)\n' +
+          '// Next.js 15에서 params는 Promise이므로,\n' +
+          '// 클라이언트 컴포넌트에서는 React의 use() 훅으로 unwrap합니다.\n' +
           '"use client";\n' +
+          'import { use } from "react";\n' +
           'import { useRouter } from "next/navigation";\n\n' +
           'export default function PhotoModal({\n' +
           '  params,\n' +
           '}: {\n' +
           '  params: Promise<{ id: string }>;\n' +
           '}) {\n' +
+          '  const { id } = use(params); // use()로 Promise unwrap\n' +
           '  const router = useRouter();\n\n' +
           '  return (\n' +
           '    <div\n' +
@@ -173,7 +177,7 @@ const chapter: Chapter = {
           '        >\n' +
           '          닫기\n' +
           '        </button>\n' +
-          '        <PhotoContent id={params} />\n' +
+          '        <PhotoContent id={id} />\n' +
           '      </div>\n' +
           '    </div>\n' +
           '  );\n' +

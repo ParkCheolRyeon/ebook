@@ -42,7 +42,7 @@ const chapter: Chapter = {
       content:
         "TypeScript는 풍부한 타입 시스템으로 이 문제들을 해결합니다.\n\n" +
         "### 원시 타입\n" +
-        "`string`, `number`, `boolean`은 JavaScript의 원시 값에 대응합니다. 대문자(`String`, `Number`)가 아닌 소문자를 사용해야 합니다.\n\n" +
+        "`string`, `number`, `boolean`, `bigint`, `symbol`은 JavaScript의 원시 값에 대응합니다. 대문자(`String`, `Number`)가 아닌 소문자를 사용해야 합니다. `bigint`는 `Number.MAX_SAFE_INTEGER`를 넘는 큰 정수를 다룰 때, `symbol`은 객체 프로퍼티의 고유 키를 만들 때 사용합니다.\n\n" +
         "### 배열과 튜플\n" +
         "`number[]` 또는 `Array<number>`로 배열의 요소 타입을 지정합니다. 튜플(`[string, number]`)은 고정 길이와 각 위치의 타입을 지정합니다.\n\n" +
         "### enum\n" +
@@ -103,6 +103,8 @@ const chapter: Chapter = {
           'let username: string = "Alice";\n' +
           "let age: number = 30;\n" +
           "let isActive: boolean = true;\n" +
+          "let bigNumber: bigint = 9007199254740991n; // BigInt 리터럴\n" +
+          "let uniqueKey: symbol = Symbol(\"key\"); // 고유한 심볼\n" +
           "\n" +
           "// 2. 배열과 튜플\n" +
           "let scores: number[] = [95, 87, 92];\n" +
@@ -146,7 +148,7 @@ const chapter: Chapter = {
       content:
         "| 타입 | 설명 | 사용 시점 |\n" +
         "|------|------|----------|\n" +
-        "| string, number, boolean | 원시 타입 | 기본 값 표현 |\n" +
+        "| string, number, boolean, bigint, symbol | 원시 타입 | 기본 값 표현 |\n" +
         "| number[], Array\\<T\\> | 배열 타입 | 동일 타입의 목록 |\n" +
         "| [T, U] | 튜플 | 고정 길이, 위치별 타입 |\n" +
         "| enum | 열거형 | 관련 상수 집합 |\n" +

@@ -64,8 +64,8 @@ const chapter: Chapter = {
         "페인트 → 컴포지트 (레이어 합성)\n" +
         "```\n\n" +
         "### 렌더링 블로킹\n\n" +
-        "- **`<script>`** — HTML 파싱을 차단합니다 (JS가 DOM을 변경할 수 있어서)\n" +
-        "- **`<link rel=\"stylesheet\">`** — 렌더 트리 구성을 차단합니다\n" +
+        "- **`<script>`** — HTML 파싱을 차단합니다(파서 블로킹). JS가 DOM을 변경할 수 있어서입니다.\n" +
+        "- **`<link rel=\"stylesheet\">`** — 렌더 블로킹(render-blocking)이지 파서 블로킹이 아닙니다. HTML 파싱은 계속 진행되지만, CSSOM이 완성될 때까지 렌더 트리 구성과 화면 렌더링이 차단됩니다.\n" +
         "- **`defer`** — HTML 파싱 완료 후 JS 실행\n" +
         "- **`async`** — 다운로드 완료 시 즉시 실행 (파싱 일시 차단)\n\n" +
         "### 레이아웃 스래싱 방지\n\n" +

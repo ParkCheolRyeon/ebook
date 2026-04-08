@@ -26,7 +26,7 @@ const chapter: Chapter = {
       content:
         "JavaScript/TypeScript의 에러 처리에는 타입 안전성 측면에서 근본적인 문제가 있습니다.\n\n" +
         "**1. catch의 error는 unknown 타입**\n" +
-        "TypeScript 4.4부터 catch의 매개변수는 `unknown`입니다. `throw`에는 아무 값이나 던질 수 있기 때문입니다. `throw 'error'`, `throw 42`, `throw null` 모두 유효한 JavaScript입니다. 따라서 `error.message`에 바로 접근할 수 없습니다.\n\n" +
+        "TypeScript 4.4부터 `useUnknownInCatchVariables` 옵션이 추가되어 catch의 매개변수를 `unknown`으로 처리할 수 있습니다. 이 옵션은 `strict: true`에 포함되어 있으므로, strict 모드에서는 자동으로 적용됩니다. strict 모드가 아닌 경우 catch 매개변수는 여전히 `any`이므로 주의가 필요합니다. `throw`에는 아무 값이나 던질 수 있기 때문에(`throw 'error'`, `throw 42`, `throw null` 모두 유효) unknown이 더 안전합니다.\n\n" +
         "**2. 함수 시그니처에 에러가 드러나지 않음**\n" +
         "`function fetchUser(id: number): Promise<User>`만 보고는 이 함수가 어떤 에러를 던질 수 있는지 알 수 없습니다. Java의 throws 선언과 달리, TypeScript에는 에러를 시그니처에 명시하는 문법이 없습니다.\n\n" +
         "**3. 에러 처리 누락의 위험**\n" +
@@ -236,7 +236,7 @@ const chapter: Chapter = {
       choices: ["any", "Error", "unknown", "never"],
       correctIndex: 2,
       explanation:
-        "TypeScript 4.4부터 catch의 매개변수는 기본적으로 unknown 타입입니다. throw에는 어떤 값이든 던질 수 있으므로, 안전하게 unknown으로 처리한 후 타입 좁히기를 해야 합니다.",
+        "TypeScript 4.4부터 useUnknownInCatchVariables 옵션(strict: true에 포함)이 활성화되면 catch의 매개변수가 unknown 타입이 됩니다. strict 모드가 아닌 경우에는 여전히 any입니다. throw에는 어떤 값이든 던질 수 있으므로, 안전하게 unknown으로 처리한 후 타입 좁히기를 해야 합니다.",
     },
     {
       id: "q2",

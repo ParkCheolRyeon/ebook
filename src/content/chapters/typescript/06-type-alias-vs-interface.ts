@@ -46,7 +46,7 @@ const chapter: Chapter = {
         "### extends vs & (인터섹션)\n" +
         "interface는 `extends`, type은 `&`로 타입을 합성합니다. 결과는 유사하지만 미묘한 차이가 있습니다. 충돌하는 프로퍼티가 있을 때 extends는 에러를, &는 never를 만듭니다.\n\n" +
         "### 성능\n" +
-        "TypeScript 팀에 따르면 interface가 내부적으로 캐싱되어 약간 유리합니다. 대규모 프로젝트에서 체감될 수 있습니다.\n\n" +
+        "TypeScript 팀에 따르면 `interface extends`가 `type &`(인터섹션)보다 내부적으로 캐싱되어 타입 검사 시 약간 유리합니다. 이는 interface와 type 자체의 차이가 아니라, extends와 인터섹션의 처리 방식 차이에서 비롯됩니다. 또한 최근 TypeScript 버전에서는 이 격차가 상당히 줄어들었습니다.\n\n" +
         "### 실무 가이드라인\n" +
         "- **객체의 형태**: interface 사용 (확장성, 선언 병합)\n" +
         "- **유니온/인터섹션/매핑**: type 사용 (유연한 조합)\n" +
@@ -244,7 +244,7 @@ const chapter: Chapter = {
       ],
       correctIndex: 1,
       explanation:
-        "TypeScript 팀에 따르면 interface는 내부적으로 캐싱되어 타입 검사 시 약간 더 효율적입니다. type alias는 매번 펼쳐져야 하므로 대규모 프로젝트에서 차이가 날 수 있습니다.",
+        "TypeScript 팀에 따르면 interface extends가 type &(인터섹션)보다 내부적으로 캐싱되어 타입 검사 시 약간 더 효율적입니다. 이는 extends와 인터섹션의 처리 방식 차이에서 비롯되며, 최근 TS 버전에서는 격차가 줄어들고 있습니다.",
     },
     {
       id: "q5",

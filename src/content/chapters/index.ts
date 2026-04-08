@@ -3,6 +3,9 @@ import { jsChapters } from "./js";
 import { reactChapters } from "./react";
 import { nextChapters } from "./next";
 import { typescriptChapters } from "./typescript";
+import { csChapters } from "./cs";
+import { networkChapters } from "./network";
+import { infraChapters } from "./infra";
 
 type ChapterLoader = () => Promise<{ default: Chapter }>;
 
@@ -10,9 +13,9 @@ const chapterLoaders: Record<Subject, Record<string, ChapterLoader>> = {
   js: jsChapters,
   react: reactChapters,
   next: nextChapters,
-  cs: {},
-  network: {},
-  infra: {},
+  cs: csChapters,
+  network: networkChapters,
+  infra: infraChapters,
   typescript: typescriptChapters,
 };
 

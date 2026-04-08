@@ -92,7 +92,7 @@ const chapter: Chapter = {
           '// ├── tailwind.config.ts      # Tailwind 설정\n' +
           '// ├── postcss.config.mjs      # PostCSS 설정\n' +
           '// ├── package.json            # 의존성 및 스크립트\n' +
-          '// └── .eslintrc.json          # ESLint 설정\n\n' +
+          '// └── eslint.config.mjs       # ESLint 설정 (Next.js 15+는 flat config 기본)\n\n' +
           '// === next.config.ts ===\n' +
           'import type { NextConfig } from "next";\n\n' +
           'const nextConfig: NextConfig = {\n' +
