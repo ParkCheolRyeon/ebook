@@ -48,7 +48,8 @@ const chapter: Chapter = {
         "- **대상**: fetch GET 결과\n" +
         "- **지속**: 무기한 (명시적 무효화 전까지)\n" +
         "- **무효화**: `revalidateTag()`, `revalidatePath()`, `{ next: { revalidate: N } }`\n" +
-        "- fetch의 cache 옵션: `no-store`(기본값, Next.js 15+) — 매 요청마다 새로 데이터를 가져옴. Next.js 14까지는 `force-cache`가 기본값이었으나, **Next.js 15에서 `no-store`로 변경**되어 명시적으로 캐싱을 설정해야 한다. `force-cache` — 서버 캐시에서 매칭 후 반환, 없으면 fetch 후 캐시 저장. `{ next: { revalidate: N } }` — 시간 기반 재검증으로 캐싱 활성화.\n\n" +
+        "- **Next.js 15의 핵심 변경:** Next.js 14까지는 fetch의 기본값이 `force-cache`(캐시 우선)였으나, **Next.js 15에서는 캐시하지 않는 것이 기본**입니다. 라우트도 기본적으로 **동적 렌더링(dynamic rendering)**으로 동작하며, 정적 렌더링은 명시적으로 opt-in해야 합니다.\n" +
+        "- fetch 캐시 옵션: `cache: 'no-store'`(Next.js 15 기본값) — 매 요청마다 새 데이터. `cache: 'force-cache'` — 명시적 캐시 활성화. `{ next: { revalidate: N } }` — 시간 기반 재검증(ISR). `{ next: { tags: [...] } }` — 태그 기반 on-demand 무효화.\n\n" +
         "### 3. Full Route Cache\n" +
         "- **범위**: 서버 측, 배포 간 지속\n" +
         "- **대상**: 정적 HTML + RSC Payload\n" +

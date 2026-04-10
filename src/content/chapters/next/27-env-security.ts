@@ -129,12 +129,14 @@ const chapter: Chapter = {
           'import type { NextConfig } from "next";\n\n' +
           'const securityHeaders = [\n' +
           '  {\n' +
-          '    // XSS 공격 방지: 인라인 스크립트 차단\n' +
+          '    // XSS 공격 방지: 리소스 출처 제한\n' +
+          '    // ⚠️ 프로덕션에서는 unsafe-eval, unsafe-inline을 제거하고\n' +
+          '    // nonce 기반 CSP를 사용하세요. 아래는 개발 편의를 위한 예시입니다.\n' +
           '    key: "Content-Security-Policy",\n' +
           '    value: [\n' +
           '      "default-src \'self\'",\n' +
-          '      "script-src \'self\' \'unsafe-eval\' \'unsafe-inline\'",\n' +
-          '      "style-src \'self\' \'unsafe-inline\'",\n' +
+          '      "script-src \'self\' \'unsafe-eval\' \'unsafe-inline\'", // 프로덕션: nonce로 대체 권장\n' +
+          '      "style-src \'self\' \'unsafe-inline\'", // 프로덕션: nonce로 대체 권장\n' +
           '      "img-src \'self\' blob: data: https:",\n' +
           '      "font-src \'self\'",\n' +
           '      "connect-src \'self\' https://api.example.com",\n' +

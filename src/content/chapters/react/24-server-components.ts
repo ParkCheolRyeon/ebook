@@ -34,7 +34,8 @@ const chapter: Chapter = {
       title: "해결 방법",
       content:
         "### React Server Components (RSC)\n" +
-        "서버에서만 실행되는 컴포넌트입니다. 기본적으로 모든 컴포넌트는 서버 컴포넌트입니다.\n\n" +
+        "서버에서만 실행되는 컴포넌트입니다. RSC를 지원하는 프레임워크(Next.js 13.4+, Remix 등)에서 기본적으로 모든 컴포넌트는 서버 컴포넌트입니다.\n\n" +
+        "> **중요:** RSC는 React의 아키텍처이지만, 실용적으로 사용하려면 **Next.js, Remix 등 RSC를 지원하는 프레임워크**가 필요합니다. 순수 Vite+React 프로젝트에서는 RSC를 바로 사용할 수 없습니다.\n\n" +
         "### 서버 컴포넌트에서 할 수 있는 것\n" +
         "- `async/await`로 직접 데이터 페칭\n" +
         "- 데이터베이스, 파일 시스템 접근\n" +

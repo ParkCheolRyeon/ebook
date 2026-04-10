@@ -36,6 +36,7 @@ const chapter: Chapter = {
       content:
         "### React Compiler란?\n" +
         "React Compiler(이전 이름: React Forget)는 빌드 타임에 컴포넌트 코드를 분석하여 **자동으로 메모이제이션을 삽입**하는 컴파일러입니다.\n\n" +
+        "> **주의:** React Compiler는 아직 **실험적(experimental)** 단계입니다. Meta 내부에서는 사용 중이지만, 프로덕션 도입 전에 반드시 공식 문서에서 최신 안정성 상태를 확인하세요. 기존 useMemo/useCallback 코드를 성급하게 제거하지 마세요.\n\n" +
         "### 컴파일러가 하는 일\n" +
         "1. 컴포넌트 함수의 코드를 정적 분석합니다.\n" +
         "2. 값이 변경되지 않은 경우 이전 결과를 재사용하도록 코드를 변환합니다.\n" +

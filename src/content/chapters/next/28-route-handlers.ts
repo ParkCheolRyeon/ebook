@@ -145,7 +145,7 @@ const chapter: Chapter = {
           '  return new NextResponse(null, { status: 204 });\n' +
           '}',
         description:
-          "route.ts에서 GET, POST, DELETE를 named export하여 HTTP 메서드별 핸들러를 구현합니다. 동적 라우트의 params는 Promise로 받아 await합니다.",
+          "route.ts에서 GET, POST, DELETE를 named export하여 HTTP 메서드별 핸들러를 구현합니다. **Next.js 15 변경사항:** 동적 라우트의 params가 동기 객체에서 `Promise<params>`로 변경되었습니다. 반드시 `await params`로 접근해야 합니다. (Next.js 14에서는 `const { id } = params`처럼 동기적으로 접근했습니다.)",
       },
     },
     {

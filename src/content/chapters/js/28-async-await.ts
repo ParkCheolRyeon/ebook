@@ -197,6 +197,10 @@ const chapter: Chapter = {
         "- async 함수 내부에서만 사용 가능 (top-level await 제외)\n" +
         "- Promise가 정착될 때까지 함수 실행 일시 정지\n" +
         "- 이벤트 루프를 블로킹하지 않음\n\n" +
+        "**비동기 취소 (AbortSignal):**\n" +
+        "- `AbortController`로 진행 중인 fetch나 비동기 작업을 취소할 수 있습니다\n" +
+        "- `const controller = new AbortController()` → `fetch(url, { signal: controller.signal })` → `controller.abort()`\n" +
+        "- React에서는 useEffect의 cleanup에서 abort()를 호출하여 컴포넌트 언마운트 시 요청을 취소합니다\n\n" +
         "**흔한 실수:**\n" +
         "- `await`를 사용하면서 의도치 않게 순차 처리 → 병렬이 필요하면 `Promise.all` 사용\n" +
         "- `forEach` 내부에서 `await` 사용 → `for...of` 또는 `Promise.all(arr.map)` 사용\n\n" +

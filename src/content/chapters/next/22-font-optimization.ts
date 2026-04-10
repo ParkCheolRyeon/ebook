@@ -118,7 +118,9 @@ const chapter: Chapter = {
           '    extend: {\n' +
           '      fontFamily: {\n' +
           '        sans: ["var(--font-noto-sans-kr)", "var(--font-inter)", "sans-serif"],\n' +
-          '        mono: ["var(--font-mono)", "monospace"],\n' +
+          '        // mono는 실습 예제의 JetBrains Mono(--font-mono)처럼\n' +
+          '        // layout.tsx에서 CSS 변수를 정의한 후 사용해야 합니다.\n' +
+          '        // mono: ["var(--font-mono)", "monospace"],\n' +
           '      },\n' +
           '    },\n' +
           '  },\n' +

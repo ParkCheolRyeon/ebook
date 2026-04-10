@@ -241,7 +241,10 @@ const chapter: Chapter = {
         "| 구조 | Record | 키-값 매핑 타입 생성 |\n" +
         "| 필터 | Exclude, Extract, NonNullable | 유니온에서 타입 필터링 |\n" +
         "| 함수 | ReturnType, Parameters | 함수 시그니처에서 타입 추출 |\n" +
-        "| 비동기 | Awaited | Promise의 resolve 타입 추출 |\n\n" +
+        "| 비동기 | Awaited | Promise의 resolve 타입 추출 |\n" +
+        "| 클래스 | InstanceType, ConstructorParameters | 클래스에서 타입 추출 |\n" +
+        "| 추론 제어 | NoInfer (TS 5.4+) | 타입 추론 방지 |\n\n" +
+        "**참고:** `InstanceType<T>`는 생성자의 인스턴스 타입, `ConstructorParameters<T>`는 생성자의 매개변수 타입을 추출합니다. TypeScript 5.4+에서 추가된 `NoInfer<T>`는 특정 위치에서 타입 추론을 방지하여 더 정확한 타입 체크를 가능하게 합니다.\n\n" +
         "**핵심 원칙:** 새 인터페이스를 만들기 전에 유틸리티 타입으로 파생할 수 있는지 먼저 확인하세요. " +
         "원본 타입이 변경되면 파생 타입도 자동으로 반영됩니다.\n\n" +
         "다음 챕터에서는 유틸리티 타입의 기반 기술인 **Mapped Types**를 깊이 다룹니다. " +

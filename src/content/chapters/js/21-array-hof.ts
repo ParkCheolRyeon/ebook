@@ -163,8 +163,13 @@ const chapter: Chapter = {
         "| reduce | 단일 값 | X | 집계, 변환 |\n" +
         "| find | 요소 또는 undefined | X | 단일 검색 |\n" +
         "| some | boolean | X | 일부 만족 검사 |\n" +
-        "| every | boolean | X | 전체 만족 검사 |\n\n" +
-        "**핵심:** 고차 함수를 체이닝하면 복잡한 데이터 변환을 읽기 쉬운 선언적 코드로 표현할 수 있습니다. 성능이 중요한 경우 중간 배열을 만들지 않는 `reduce` 하나로 처리하거나 `flatMap`을 활용하세요.\n\n" +
+        "| every | boolean | X | 전체 만족 검사 |\n" +
+        "| flatMap | 새 배열 | X | map + flat(1) (ES2019) |\n" +
+        "| findLast | 요소 또는 undefined | X | 뒤에서부터 검색 (ES2023) |\n" +
+        "| findLastIndex | 인덱스 | X | 뒤에서부터 인덱스 검색 (ES2023) |\n" +
+        "| toSorted | 새 배열 | X | 비파괴 정렬 (ES2023) |\n" +
+        "| toReversed | 새 배열 | X | 비파괴 역순 (ES2023) |\n\n" +
+        "**핵심:** 고차 함수를 체이닝하면 복잡한 데이터 변환을 읽기 쉬운 선언적 코드로 표현할 수 있습니다. `flatMap`은 map과 filter를 한 번에 처리할 때, `findLast`는 정렬된 배열의 마지막 매칭 요소를 찾을 때 유용합니다. ES2023의 `toSorted`/`toReversed`는 원본을 변경하지 않는 안전한 대안입니다.\n\n" +
         "**다음 챕터 미리보기:** Map과 Set, WeakMap과 WeakSet을 통한 더 특화된 자료구조를 살펴봅니다.",
     },
     {

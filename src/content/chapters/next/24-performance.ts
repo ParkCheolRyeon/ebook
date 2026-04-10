@@ -149,9 +149,11 @@ const chapter: Chapter = {
         code:
           '// === components/WebVitals.tsx — Core Web Vitals 측정 ===\n' +
           '"use client";\n\n' +
-          '// [deprecated] useReportWebVitals는 Next.js 15에서 deprecated되었습니다.\n' +
-          '// 대신 web-vitals 라이브러리 직접 사용 또는 @vercel/speed-insights를 권장합니다.\n' +
-          '// import { useReportWebVitals } from "next/web-vitals"; // deprecated\n\n' +
+          '// [removed] useReportWebVitals는 Next.js 15에서 완전히 제거되었습니다.\n' +
+          '// 사용 시 빌드 에러가 발생합니다. 아래 대안을 사용하세요:\n' +
+          '// - web-vitals 라이브러리 직접 사용 (범용)\n' +
+          '// - @vercel/speed-insights (Vercel 배포 시 권장)\n' +
+          '// import { useReportWebVitals } from "next/web-vitals"; // ❌ Next.js 15에서 제거됨\n\n' +
           '// web-vitals 라이브러리 직접 사용 방식 (npm install web-vitals)\n' +
           'import { useEffect } from "react";\n' +
           'import { onCLS, onINP, onLCP } from "web-vitals";\n\n' +

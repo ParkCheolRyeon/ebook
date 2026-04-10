@@ -59,7 +59,7 @@ const chapter: Chapter = {
         "서버 컴포넌트와 완벽 호환되고, 사용하지 않는 클래스는 빌드 시 제거(purge)됩니다.\n\n" +
         "### 3. Global CSS\n" +
         "`app/globals.css`에서 리셋 CSS, 기본 타이포그래피, CSS 변수 등 공통 스타일을 정의합니다. " +
-        "App Router에서는 root layout뿐만 아니라 모든 layout이나 Server Component에서 Global CSS를 import할 수 있습니다. (Pages Router에서는 `_app.tsx`에서만 가능했던 제한이 해제되었습니다.)\n\n" +
+        "App Router에서는 기술적으로 모든 layout이나 Server Component에서 Global CSS를 import할 수 있습니다. 그러나 **공식 권장사항은 root layout(`app/layout.tsx`)에서만 Global CSS를 import하는 것**입니다. 자식 layout에서 Global CSS를 import하면 동일한 CSS가 중복 포함되거나 CSS specificity 문제가 발생할 수 있습니다. (Pages Router에서는 `_app.tsx`에서만 가능했던 제한이 해제되었습니다.)\n\n" +
         "### 4. Sass 지원\n" +
         "`sass` 패키지를 설치하면 `.module.scss` 파일을 바로 사용할 수 있습니다. " +
         "변수, 중첩, mixin 등 Sass 기능을 CSS Modules과 함께 쓸 수 있습니다.\n\n" +

@@ -122,9 +122,26 @@ const chapter: Chapter = {
           '  return res.json();\n' +
           '}\n' +
           '\n' +
-          '// 주의: Promise는 렌더링 밖에서 생성해야 함\n' +
-          'function UserPage({ userId }: { userId: string }) {\n' +
-          '  const userPromise = fetchUser(userId); // ⚠️ 매 렌더링마다 새 Promise\n' +
+          '// ❌ 잘못된 패턴: 렌더링 중 매번 새 Promise 생성 → 무한 suspend!\n' +
+          '// function UserPage({ userId }: { userId: string }) {\n' +
+          '//   const userPromise = fetchUser(userId); // ❌ 매 렌더링마다 새 pending Promise\n' +
+          '//   → Suspense가 무한히 fallback을 보여줌\n' +
+          '// }\n' +
+          '\n' +
+          '// ✅ 올바른 패턴 1: 부모(서버 컴포넌트)에서 Promise를 prop으로 전달\n' +
+          'async function UserPageServer({ userId }: { userId: string }) {\n' +
+          '  const userPromise = fetchUser(userId); // 서버에서 한 번만 생성\n' +
+          '  return (\n' +
+          '    <Suspense fallback={<p>로딩 중...</p>}>\n' +
+          '      <UserProfile userPromise={userPromise} />\n' +
+          '    </Suspense>\n' +
+          '  );\n' +
+          '}\n' +
+          '\n' +
+          '// ✅ 올바른 패턴 2: useMemo로 캐시 (클라이언트 컴포넌트)\n' +
+          'import { useMemo } from "react";\n' +
+          'function UserPageClient({ userId }: { userId: string }) {\n' +
+          '  const userPromise = useMemo(() => fetchUser(userId), [userId]);\n' +
           '  return (\n' +
           '    <Suspense fallback={<p>로딩 중...</p>}>\n' +
           '      <UserProfile userPromise={userPromise} />\n' +
